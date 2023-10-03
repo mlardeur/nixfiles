@@ -10,10 +10,15 @@
     };
   };
 
-  outputs = inputs@{ nixpkgs, home-manager, ... }: {
+  outputs = { self, nixpkgs, home-manager, ... } @ inputs: 
+  let 
+    inherit (self) outputs;
+    system = "x86_64-linux";
+  in {
+    # NixOS configuration entrypoint available through
+    # 'sudo nixos-rebuild switch --flake .#hostname'
     nixosConfigurations = {
       nixos = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
         modules = [
           ./hosts/configuration.nix
           home-manager.nixosModules.home-manager {
@@ -25,6 +30,18 @@
             # arguments to home.nix
           }
         ];
+      };
+    };
+
+    # Standalone home-manager configuration entrypoint available through
+    # 'home-manager switch --flake .#username@hostname'
+    homeConfigurations = {
+      "zion@zion" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.${system};
+          extraSpecialArgs = {inherit inputs outputs;};
+          modules = [
+            ./home/zion.nix
+          ];
       };
     };
   };
