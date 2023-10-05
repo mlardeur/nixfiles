@@ -41,6 +41,13 @@
           extraSpecialArgs = {inherit inputs outputs;};
           modules = [
             ./home/zion.nix
+          ];      
+      };
+      "mlardeur@maxime-dell" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.${system};
+          extraSpecialArgs = {inherit inputs outputs;};
+          modules = [
+            ./home/maxime-dell.nix
           ];
       };
     };

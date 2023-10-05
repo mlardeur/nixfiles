@@ -14,7 +14,8 @@
 
   programs.starship = {
     enable = true;
-  };
+    enableFishIntegration = true;
+  };  
 
   home.packages = with pkgs; [
     ranger
