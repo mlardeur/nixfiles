@@ -5,10 +5,11 @@
 { config, pkgs, ... }:
 
 {
-  nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
 
@@ -61,7 +62,7 @@
 
   # Polkit enable
   security.polkit.enable = true;
-  
+
   # Enable sound with pipewire.
   sound.enable = true;
   hardware.pulseaudio.enable = false;
@@ -86,7 +87,7 @@
   users.users.maxime = {
     isNormalUser = true;
     description = "maxime";
-    extraGroups = [ "networkmanager" "wheel" "video"];
+    extraGroups = [ "networkmanager" "wheel" "video" ];
     packages = with pkgs; [
     ];
   };
@@ -98,7 +99,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     bat
-    kitty    
+    kitty
     fish
     git
     mpv

@@ -1,0 +1,233 @@
+/* =============================================================================
+ *
+ * Waybar configuration
+ *
+ * Configuration reference: https://github.com/Alexays/Waybar/wiki/Configuration
+ *
+ * =========================================================================== */
+
+/* -----------------------------------------------------------------------------
+ * Keyframes
+ * -------------------------------------------------------------------------- */
+
+@import "colors.css";
+
+@keyframes blink-warning {
+    70% {
+        color: white;
+    }
+
+    to {
+        color: white;
+        background-color: @base0A;
+    }
+}
+
+@keyframes blink-critical {
+    70% {
+      color: white;
+    }
+
+    to {
+        color: white;
+        background-color: @base08;
+    }
+}
+
+/* -----------------------------------------------------------------------------
+ * Base styles
+ * -------------------------------------------------------------------------- */
+
+/* Reset all styles */
+* {
+    border: none;
+    border-radius: 0;
+    min-height: 0;
+    margin: 1px;
+    padding: 0;
+}
+
+/* The whole bar */
+#waybar {
+    background: transparent;
+    color: @base07;
+    background-color: @base02;
+    font-family: UbuntuMono;
+    font-size: 14px;
+}
+
+/* Every modules */
+#custom-media,
+#disk,
+#battery,
+#clock,
+#backlight,
+#cpu,
+#custom-keyboard-layout,
+#memory,
+#mode,
+#custom-weather,
+#network,
+#pulseaudio,
+#temperature,
+#tray,
+#idle_inhibitor,
+#custom-PBPbattery {
+    padding: 0.3rem 0.6rem;
+    margin: 4px 0px;
+}
+
+/* -----------------------------------------------------------------------------
+ * Modules styles
+ * -------------------------------------------------------------------------- */
+
+ /* Rounded background */
+#clock,
+#disk,
+#memory,
+#cpu,
+#pulseaudio,
+#backlight,
+#battery,
+#temperature {
+    background-color: @base03;
+}
+
+/* Left & Right module */
+#clock, 
+#battery {
+    border-radius: 15px 15px 15px 15px;
+    margin-right: 2px;
+}
+
+/* Left module */
+#disk, 
+#pulseaudio {
+    border-radius: 15px 0px 0px 15px;
+    margin-left: 2px;
+}
+
+/* Right module */
+#temperature,
+#backlight {
+    border-radius: 0px 15px 15px 0px;
+    margin-right: 2px;
+}
+
+#custom-media {
+    border-radius: 15px 15px 15px 15px;
+    margin-right: 2px;
+    background-color: @base03;
+    color: @base0B;
+}
+
+/* Custom colors and animations */
+
+#battery {
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#battery.warning {
+    color: @base0A;
+}
+
+#battery.critical {
+    color: @base08;
+}
+
+#battery.warning.discharging {
+    animation-name: blink-warning;
+    animation-duration: 3s;
+}
+
+#battery.critical.discharging {
+    animation-name: blink-critical;
+    animation-duration: 2s;
+}
+
+#cpu.warning {
+    color: @base0A;
+}
+
+#cpu.critical {
+    color: @base08;
+}
+
+#memory {
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#memory.warning {
+    color: @base0A;
+ }
+
+#memory.critical {
+    color: @base08;
+    animation-name: blink-critical;
+    animation-duration: 2s;
+    padding-left:5px;
+    padding-right:5px;
+}
+
+#mode {
+    background: @base00;
+    border-bottom: 3px transparent;
+    color:white;
+    margin-left: 5px;
+    padding: 6px;
+}
+
+#network.disconnected {
+    color: @base0A;
+}
+
+#pulseaudio.muted {
+    color: @base00;
+}
+
+#temperature.critical {
+    color: @base08;
+}
+
+#window {
+    font-weight: bold;
+}
+
+#workspaces {
+    font-size:13px;
+}
+
+#workspaces button {
+    border-bottom: 3px solid transparent;
+    margin-bottom: 0px;
+    padding:0px;
+}
+
+#workspaces button.focused {
+    border-bottom: 3px solid  @base0D;
+    margin-bottom: 1px;
+    padding-left:0;
+}
+
+#workspaces button.urgent {
+    border-color: @base08;
+    color: @base08;
+}
+
+#custom-power {
+    margin-left:15px;
+    margin-right:15px;
+    font-size:15px;
+}
+
+#custom-launcher {
+    font-size:15px;
+    margin-left:15px;
+    margin-right:10px;
+}
+
+

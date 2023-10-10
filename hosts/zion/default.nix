@@ -1,4 +1,4 @@
-{inputs, lib, config, pkgs, ...}:
+{ inputs, lib, config, pkgs, ... }:
 
 {
   imports = [
@@ -9,14 +9,16 @@
     config = {
       allowUnfree = true;
     };
-  };  
+  };
 
   home = {
-    username = "mlardeur";
-    homeDirectory = "/home/mlardeur";
-    stateVersion = "23.05";    
+    username = "zion";
+    homeDirectory = "/home/zion";
+    stateVersion = "23.05";
 
     packages = with pkgs; [
+      gnome.gnome-session
+      budgie.budgie-desktop
     ];
   };
 

@@ -1,8 +1,9 @@
-{config , pkgs, ...}:
+{ config, pkgs, ... }:
 
 {
   imports = [
     ./cli
+    ./programs
   ];
 
   # Home Manger needs a bit of information about you and the 
@@ -11,14 +12,14 @@
     username = "maxime";
     homeDirectory = "/home/maxime";
     stateVersion = "23.05";
+
+    # Packages that should be installed to the user profile.
+    packages = with pkgs; [
+    ];
   };
 
-  # Packages that should be installed to the user profile.
-  home.packages = with pkgs; [
-    bitwarden
-    vscode
-  ];
- 
+
+
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }
