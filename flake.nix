@@ -31,9 +31,14 @@
       # NixOS configuration entrypoint available through
       # 'sudo nixos-rebuild switch --flake .#hostname'
       nixosConfigurations = {
+        athena = nixpkgs.lib.nixosSystem {
+          modules = [
+            ./hosts/athena/configuration.nix
+          ];
+        };
         nixos = nixpkgs.lib.nixosSystem {
           modules = [
-            ./hosts/configuration.nix
+            ./hosts/nixos/configuration.nix
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
