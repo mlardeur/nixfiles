@@ -10,19 +10,25 @@
     # The current latest version is 23.05
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.05";
 
+    # Home Manager
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # NixGL
+    nixgl.url = "github:guibou/nixGL";
+
   };
 
-  outputs = { self, nixpkgs, home-manager, ... } @ inputs:
+  outputs = { self, nixpkgs, home-manager, nixgl, ... } @ inputs:
     let
       inherit (self) outputs;
       system = "x86_64-linux";
       pkgs = import nixpkgs {
         system = system;
         config.allowUnfree = true;
+        overlays = [ nixgl.overlay ];
       };
     in
     {

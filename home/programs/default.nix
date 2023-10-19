@@ -3,6 +3,9 @@
 
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
+    # System
+    gvfs
+
     # General
     brave
     firefox-wayland

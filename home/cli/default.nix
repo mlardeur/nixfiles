@@ -15,6 +15,9 @@
 
   programs.bat = {
     enable = true;
+    config = {
+      theme = "base16";
+    };
   };
 
   programs.starship = {
@@ -41,8 +44,15 @@
   fonts.fontconfig.enable = true;
 
   home.packages = with pkgs; [
+    # Fish plugins
+    fishPlugins.plugin-git
+
+    #
     neofetch
     ranger
+    zstd
+
+    # Fonts
     (pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; })
   ];
 }

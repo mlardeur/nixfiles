@@ -2,15 +2,11 @@
 assign [app_id="firefox"] 5
 for_window [app_id="firefox"] focus
 
-assign [class="firefox"] 5
-for_window [class="firefox"] focus
-
-# Assign workspaces
 assign [app_id="Chromium"] 2
 for_window [app_id="Chromium"] focus
 
-assign [class="Chromium"] 2
-for_window [class="Chromium"] focus
+assign [class="Brave-browser"] 2
+for_window [class="Brave-browser"] focus
 
 # assign [app_id=thunar] 10
 # for_window [app_id=thunar] focus
