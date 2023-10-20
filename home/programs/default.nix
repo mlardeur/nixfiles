@@ -17,7 +17,8 @@
     authy
     bitwarden
 
-    # Multimedia 
+    # Multimedia
+    tidal-hifi 
     spotify
     jellyfin-media-player
 

@@ -61,6 +61,13 @@
       # Standalone home-manager configuration entrypoint available through
       # 'home-manager switch --flake .#username@hostname'
       homeConfigurations = {
+        "maxime@athena" = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          extraSpecialArgs = { inherit inputs outputs; };
+          modules = [
+            ./hosts/maxime-dell
+          ];
+        };
         "zion@zion" = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           extraSpecialArgs = { inherit inputs outputs; };

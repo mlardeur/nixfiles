@@ -8,7 +8,6 @@
   ];
 
   home.packages = with pkgs; [
-    nixgl.nixGLIntel
     kitty
     foot
     rofi-wayland
