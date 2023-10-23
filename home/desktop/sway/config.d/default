@@ -10,12 +10,13 @@ set $volume_mute $(pactl set-sink-mute @DEFAULT_SINK@ toggle && pactl get-sink-m
 set $mic_mute $(pactl set-source-mute @DEFAULT_SOURCE@ toggle && pactl get-source-mute @DEFAULT_SOURCE@ | sed -En "/no/ s/.*/$($source_volume)/p; /yes/ s/.*/0/p")
 
 # Your preferred terminal emulators
-set $term-float xfce4-terminal
+set $term kitty
 
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-set $menu wofi -c ~/.config/wofi/config -I
+# set $menu wofi -c ~/.config/wofi/config -I
+set $menu rofi -show drun -show-icons
 
 set $powermenu ~/.config/waybar/scripts/power-menu.sh
 
@@ -38,7 +39,7 @@ exec swayidle -w \
 # Basics:
 #
     # Start a floating terminal
-    bindsym $mod+Return exec $term-float
+    bindsym $mod+Return exec $term
 
     # Open the power menu
     bindsym $mod+Shift+e exec $powermenu
