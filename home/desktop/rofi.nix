@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 {
-  programs.rofi ={
+  programs.rofi = {
     enable = true;
     package = pkgs.rofi-wayland;
     cycle = false;

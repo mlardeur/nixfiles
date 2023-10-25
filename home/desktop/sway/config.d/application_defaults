@@ -8,9 +8,6 @@ for_window [app_id="Chromium"] focus
 assign [class="Brave-browser"] 2
 for_window [class="Brave-browser"] focus
 
-# assign [app_id=thunar] 10
-# for_window [app_id=thunar] focus
-
 assign [class="Spotify"] "m"
 for_window [class="Spotify"] focus
 

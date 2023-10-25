@@ -6,7 +6,7 @@
     ./rofi.nix
     ./sway.nix
     ./waybar.nix
-#    ./hyprland.nix
+    #    ./hyprland.nix
   ];
 
   gtk = {
@@ -26,7 +26,7 @@
     iconTheme = {
       package = pkgs.arc-icon-theme;
       name = "Arc-X-D";
-    };    
+    };
   };
 
 }

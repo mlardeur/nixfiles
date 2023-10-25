@@ -48,12 +48,13 @@
     fishPlugins.plugin-git
 
     #
+    htop
     cmatrix
     neofetch
     ranger
     zstd
 
     # Fonts
-    (pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; })
+    (pkgs.nerdfonts.override { fonts = [ "FiraCode" "Hack" ]; })
   ];
 }

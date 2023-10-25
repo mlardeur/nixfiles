@@ -5,7 +5,7 @@
     ../../home/cli
     ../../home/programs
     ../../home/desktop
-    ../../home/programs/dev.nix 
+    ../../home/programs/dev.nix
   ];
 
   # Home Manger needs a bit of information about you and the 

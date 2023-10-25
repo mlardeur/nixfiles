@@ -23,10 +23,3 @@ exec dex -a -s /etc/xdg/autostart/:~/.config/autostart/
 # Automatic output config
 exec_always pkill kanshi; exec kanshi
 
-# Sway Fader
-# exec python3 ~/.config/sway/scripts/swayfader.py      
-
-# Autostart apps as you like
-#exec --no-startup-id sleep 2 && xfce4-terminal
-#exec --no-startup-id firefox
-#exec --no-startup-id sleep 3 && thunar
