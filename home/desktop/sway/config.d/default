@@ -38,7 +38,7 @@ exec swayidle -w \
 #
 # Basics:
 #
-    # Start a floating terminal
+    # Start a terminal
     bindsym $mod+Return exec $term
 
     # Open the power menu

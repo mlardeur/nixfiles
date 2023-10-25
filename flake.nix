@@ -65,7 +65,7 @@
           inherit pkgs;
           extraSpecialArgs = { inherit inputs outputs; };
           modules = [
-            ./hosts/maxime-dell
+            ./hosts/athena/maxime.nix
           ];
         };
         "zion@zion" = home-manager.lib.homeManagerConfiguration {

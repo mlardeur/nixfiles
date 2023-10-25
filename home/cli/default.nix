@@ -48,6 +48,7 @@
     fishPlugins.plugin-git
 
     #
+    cmatrix
     neofetch
     ranger
     zstd
