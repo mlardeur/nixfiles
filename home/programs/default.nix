@@ -22,8 +22,7 @@
     spotify
     jellyfin-media-player
 
-    # Music
-
+    
   ];
 
 }

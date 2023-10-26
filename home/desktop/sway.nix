@@ -1,10 +1,8 @@
 { pkgs, ... }:
 
 {
-
   home.packages = with pkgs; [
     autotiling
-    wev
   ];
 
   wayland.windowManager.sway = {
@@ -17,4 +15,5 @@
       recursive = true;
     };
   };
+
 }
