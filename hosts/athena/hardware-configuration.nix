@@ -72,17 +72,17 @@
 
   # For mount.cifs, required unless domain name resolution is not needed.
   environment.systemPackages = [ pkgs.cifs-utils ];
-  #fileSystems."/mnt/pandora" = {
-  #  device = "//192.168.1.5/";
-  #  fsType = "cifs";
-  #  options =
-  #    let
-  #      # this line prevents hanging on network split
-  #      automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
-  #
-  #      in
-  #      [ "${automount_opts},uid=1000,gid=100,credentials=/etc/nixos/smb-secrets" ];
-  #  };
+  fileSystems."/mnt/zion" = {
+    device = "//192.168.1.4/media";
+    fsType = "cifs";
+    options =
+      let
+        # this line prevents hanging on network split
+        automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
+  
+        in
+        [ "${automount_opts},uid=1000,gid=100,credentials=/etc/nixos/smb-zion-secrets" ];
+    };
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's

@@ -4,7 +4,9 @@
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
     # System
-    gvfs
+    pavucontrol
+    playerctl
+    networkmanagerapplet
 
     # General
     brave
@@ -18,6 +20,7 @@
     bitwarden
 
     # Multimedia
+    beets
     tidal-hifi
     spotify
     jellyfin-media-player

@@ -72,10 +72,15 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     git
-    home-manager
-    pavucontrol
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    vim
     wget
+    
+    # Home Manager module
+    home-manager
+
+    # Python Stuff
+    python3
+    python311Packages.pygobject3
   ];
 
   programs.dconf.enable = true;
@@ -89,7 +94,8 @@
   # };
 
   # List services that you want to enable:
-  services.gvfs.enable = true;
+  services.gvfs.enable = true; # Mount, trash, and other functionalities
+  services.tumbler.enable = true; # Thumbnail support for images
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
