@@ -55,7 +55,7 @@
       options = [ "subvol=swap" "noatime" ];
     };
 
-  swapDevices = [ { device = "/swap/swapfile"; } ];
+  swapDevices = [{ device = "/swap/swapfile"; }];
 
   # Mount Internal disks SSD + HDD
   #fileSystems."/mnt/games" =

@@ -3,7 +3,6 @@
 {
   imports = [
     ../../home/cli
-    ../../home/programs
     ../../home/programs/dev.nix
     ../../home/programs/gaming.nix
     ../../home/desktop
