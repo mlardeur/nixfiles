@@ -10,10 +10,6 @@
     #    ./hyprland.nix
   ];
 
-  home.sessionVariables = {
-    GIO_EXTRA_MODULES = "/usr/share/lib/gio/modules";
-  };
-
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
     # System
@@ -33,7 +29,6 @@
     bitwarden
 
     # Multimedia
-    beets
     tidal-hifi
     spotify
     jellyfin-media-player

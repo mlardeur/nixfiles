@@ -3,6 +3,7 @@
 {
   imports = [
     ./cli
+    ../../home/cli/beets.nix
   ];
 
   nixpkgs = {
@@ -17,9 +18,17 @@
     stateVersion = "23.05";
 
     packages = with pkgs; [
-      gnome.gnome-session
-      budgie.budgie-desktop
     ];
+  };
+
+  targets.genericLinux.enable = true;
+  xdg.mime.enable = true;
+
+  programs.beets = {
+    settings = {
+      directory = "/mnt/media/music";
+      library = "/mnt/media/music/libary.db";
+    };
   };
 
   programs.home-manager.enable = true;

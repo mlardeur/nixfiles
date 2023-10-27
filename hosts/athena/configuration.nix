@@ -74,7 +74,7 @@
     git
     vim
     wget
-    
+
     # Home Manager module
     home-manager
 
