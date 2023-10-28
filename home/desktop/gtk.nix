@@ -16,7 +16,7 @@
     };
     iconTheme = {
       package = pkgs.arc-icon-theme;
-      name = "Arc-X-D";
+      name = "Arc";
     };
   };
 }

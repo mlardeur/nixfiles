@@ -33,11 +33,9 @@
   targets.genericLinux.enable = true;
   xdg.mime.enable = true;
 
-  programs.beets = {
-    settings = {
-      directory = "/mnt/zion/music";
-      library = "/mnt/zion/music/libary.db";
-    };
+  xdg.userDirs = {
+    enable = true;
+    music = "/mnt/zion/music";
   };
 
   programs.home-manager.enable = true;

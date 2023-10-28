@@ -24,11 +24,10 @@
   targets.genericLinux.enable = true;
   xdg.mime.enable = true;
 
-  programs.beets = {
-    settings = {
-      directory = "/mnt/media/music";
-      library = "/mnt/media/music/libary.db";
-    };
+
+  xdg.userDirs = {
+    enable = true;
+    music = "/mnt/media/music";
   };
 
   programs.home-manager.enable = true;

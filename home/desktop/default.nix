@@ -35,7 +35,19 @@
 
   ];
 
+  # Music and media player 
+  programs.mpv = {
+    enable = true;
+  };
+  programs.ncmpcpp = {
+    enable = true;
+  };
+
   services = {
+    mpd = {
+      enable = true;
+    };
+
     # Applets, shown in tray
     # Networking
     network-manager-applet.enable = true;
