@@ -13,6 +13,12 @@
         incremental = true;
         log = "beets.log";
       };
+      plugins = [
+        "fetchart"
+        "smartplaylist"
+        "embedart"
+        "acousticbrainz"
+      ];
     };
   };
 }
