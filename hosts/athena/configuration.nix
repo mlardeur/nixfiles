@@ -86,6 +86,7 @@
     python311Packages.pygobject3
   ];
 
+  programs.ssh.startAgent = true;
   programs.dconf.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are

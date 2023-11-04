@@ -6,6 +6,7 @@
     ../../home/cli/beets.nix
     ../../home/desktop
     ../../home/programs/dev.nix
+    ../../home/programs/gaming.nix
   ];
 
   # Home Manger needs a bit of information about you and the 

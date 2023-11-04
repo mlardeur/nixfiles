@@ -58,17 +58,17 @@
   swapDevices = [{ device = "/swap/swapfile"; }];
 
   # Mount Internal disks SSD + HDD
-  #fileSystems."/mnt/games" =
-  #  {
-  #    device = "/dev/disk/by-uuid/105B-1B7D";
-  #    fsType = "exfat";
-  #  };
+  fileSystems."/mnt/games" =
+    {
+      device = "/dev/disk/by-uuid/105B-1B7D";
+      fsType = "exfat";
+    };
 
-  #fileSystems."/mnt/games-fast" =
-  #  {
-  #    device = "/dev/disk/by-uuid/6662-C567";
-  #    fsType = "exfat";
-  #  };
+  fileSystems."/mnt/games-fast" =
+    {
+      device = "/dev/disk/by-uuid/6662-C567";
+      fsType = "exfat";
+    };
 
   # For mount.cifs, required unless domain name resolution is not needed.
   environment.systemPackages = [ pkgs.cifs-utils ];
