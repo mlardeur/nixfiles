@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ./cli
+    ../../home/cli
     ../../home/cli/beets.nix
   ];
 
