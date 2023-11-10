@@ -15,6 +15,7 @@
       modifier = "Mod4";
       terminal = "kitty";
       menu = "rofi -show drun -show-icons";
+      # rofi -show combi -modes combi -combi-modes "window,drun,run" -show-icons"
       gaps = {
         inner = 8;
         outer = 2;
