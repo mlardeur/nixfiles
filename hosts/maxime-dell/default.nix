@@ -1,9 +1,9 @@
-{ inputs, lib, config, pkgs, ... }:
+{ inputs, pkgs, ... }:
 
 {
   imports = [
+    inputs.nix-colors.homeManagerModules.default
     ../../home/cli
-    ../../home/cli/beets.nix
     ../../home/programs/dev.nix
     ../../home/programs/gaming.nix
     ../../home/desktop

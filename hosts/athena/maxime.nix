@@ -1,13 +1,15 @@
-{ config, pkgs, ... }:
+{ inputs, pkgs, ... }:
 
 {
   imports = [
+    inputs.nix-colors.homeManagerModules.default
     ../../home/cli
-    ../../home/cli/beets.nix
     ../../home/desktop
     ../../home/programs/dev.nix
     ../../home/programs/gaming.nix
   ];
+
+  colorScheme = inputs.nix-colors.colorSchemes.tokyo-night-terminal-dark;
 
   # Home Manger needs a bit of information about you and the 
   # paths is should manage.

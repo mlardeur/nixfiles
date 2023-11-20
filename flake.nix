@@ -19,6 +19,9 @@
     # NixGL
     nixgl.url = "github:guibou/nixGL";
 
+    # Nix Colors
+    nix-colors.url = "github:misterio77/nix-colors";
+
   };
 
   outputs = { self, nixpkgs, nixpkgs-stable, home-manager, nixgl, ... } @ inputs:
@@ -45,20 +48,6 @@
         athena = nixpkgs.lib.nixosSystem {
           modules = [
             ./hosts/athena/configuration.nix
-          ];
-        };
-        nixos = nixpkgs.lib.nixosSystem {
-          modules = [
-            ./hosts/nixos/configuration.nix
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.maxime = import ./hosts/nixos;
-
-              # Optionally, use home-manager.extraSpecialArgs to pass
-              # arguments to home.nix
-            }
           ];
         };
       };

@@ -63,14 +63,14 @@
       device = "/dev/disk/by-uuid/105B-1B7D";
       fsType = "exfat";
       noCheck = true;
-      options = ["uid=1000,gid=100"];
+      options = [ "uid=1000,gid=100" ];
     };
 
   fileSystems."/mnt/games-fast" =
     {
       device = "/dev/disk/by-uuid/6662-C567";
       fsType = "exfat";
-      options = ["uid=1000,gid=100"];
+      options = [ "uid=1000,gid=100" ];
     };
 
   # For mount.cifs, required unless domain name resolution is not needed.

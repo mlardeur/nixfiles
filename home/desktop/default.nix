@@ -4,6 +4,7 @@
   imports = [
     ./kitty.nix
     ./rofi.nix
+    ./dunst.nix
     ./gtk.nix
     ./sway.nix
     ./waybar.nix
@@ -13,6 +14,7 @@
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
     # System
+    libnotify
     pavucontrol
     playerctl
     networkmanagerapplet
@@ -55,7 +57,7 @@
       enable = true;
       network.listenAddress = "any";
     };
-    mpd-mpris.enable =true;
+    mpd-mpris.enable = true;
 
     # Applets, shown in tray
     # Networking
