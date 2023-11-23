@@ -18,14 +18,11 @@
     pavucontrol
     playerctl
     networkmanagerapplet
-    xdg-desktop-portal-gtk
+    xdg-desktop-portal
 
     # General
     brave
     firefox-wayland
-    xfce.thunar
-    xfce.thunar-volman
-    xfce.thunar-archive-plugin
 
     # Security
     authy

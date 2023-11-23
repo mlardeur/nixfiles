@@ -39,6 +39,11 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
+  services.avahi = {
+    enable = true;
+    nssmdns = true;
+    openFirewall = true;
+  };
 
   # Enable sound.
   sound.enable = true;
@@ -88,14 +93,14 @@
 
   programs.ssh.startAgent = true;
   programs.dconf.enable = true;
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
+  programs.thunar = {
+    enable = true;
+    plugins = with pkgs.xfce; [
+      thunar-volman
+      thunar-archive-plugin
+    ];
+  };
+    
 
   # List services that you want to enable:
   services.gvfs.enable = true; # Mount, trash, and other functionalities

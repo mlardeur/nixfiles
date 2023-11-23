@@ -14,6 +14,15 @@
     plugins = [
       # Enable a plugin (here grc for colorized command output) from nixpkgs
       { name = "grc"; src = pkgs.fishPlugins.grc.src; }
+      { name = "git"; src = pkgs.fishPlugins.plugin-git.src; }
+    ];
+  };
+
+  programs.keychain = {
+    enable = true;
+    enableFishIntegration = true;
+    keys = [
+      "id_ed25519"
     ];
   };
 
@@ -53,10 +62,8 @@
   fonts.fontconfig.enable = true;
 
   home.packages = with pkgs; [
-    # Fish plugins
-    fishPlugins.plugin-git
-
-    #
+    # cli tools
+    grc
     htop
     cmatrix
     neofetch
