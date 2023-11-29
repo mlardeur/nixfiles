@@ -8,6 +8,7 @@
     ../../home/programs/dev.nix
     ../../home/programs/gaming.nix
     ../../home/programs/music.nix
+    ./kanshi.nix
   ];
 
   colorScheme = inputs.nix-colors.colorSchemes.tokyo-night-terminal-dark;

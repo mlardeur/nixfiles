@@ -29,39 +29,52 @@
   i18n.defaultLocale = "en_US.UTF-8";
   console.useXkbConfig = true;
 
-  # Enable the X11 windowing system.
-  # services.xserver.enable = true;
+  
+  services = {
+    
+    # Enable the X11 windowing system. Configure keymap in X11
+    xserver = {
+      # enable = true;
+      # services.xserver.libinput.enable = true;
+      layout = "fr";
+      exportConfiguration = true;
+      xkbOptions = "eurosign:e,caps:escape";
+    };
+    
+    # Enable CUPS to print documents.
+    printing.enable = true;
+    avahi = {
+      enable = true;
+      nssmdns = true;
+      openFirewall = true;
+    };
 
-  # Configure keymap in X11
-  services.xserver.layout = "fr";
-  services.xserver.exportConfiguration = true;
-  services.xserver.xkbOptions = "eurosign:e,caps:escape";
+    # Enable sound
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      jack.enable = true;
+    };
+    
+    # List services that you want to enable:
+    gvfs.enable = true; # Mount, trash, and other functionalities
+    tumbler.enable = true; # Thumbnail support for images
+    getty.autologinUser = "maxime"; # Autologin user
+    flatpak.enable = true;
 
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
-  services.avahi = {
-    enable = true;
-    nssmdns = true;
-    openFirewall = true;
   };
+
 
   # Enable sound.
   sound.enable = true;
   hardware.pulseaudio.enable = false;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    jack.enable = true;
-  };
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
 
   security = {
     polkit.enable = true;
     rtkit.enable = true;
+    pam.services.swaylock = {};
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -77,6 +90,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     git
+    openssl
     vim
     wget
 
@@ -91,6 +105,16 @@
     python311Packages.pygobject3
   ];
 
+
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-wlr
+      xdg-desktop-portal-gtk
+    ];
+  };
+
+  # System programs
   programs.ssh.startAgent = true;
   programs.dconf.enable = true;
   programs.thunar = {
@@ -101,11 +125,6 @@
     ];
   };
     
-
-  # List services that you want to enable:
-  services.gvfs.enable = true; # Mount, trash, and other functionalities
-  services.tumbler.enable = true; # Thumbnail support for images
-  services.getty.autologinUser = "maxime"; # Autologin user
 
   systemd = {
     user.services.polkit-gnome-authentication-agent-1 = {

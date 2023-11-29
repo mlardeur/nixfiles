@@ -4,6 +4,8 @@
   home.packages = with pkgs; [
     autotiling
     swaybg
+    swayidle
+    kanshi
   ];
 
   wayland.windowManager.sway = {

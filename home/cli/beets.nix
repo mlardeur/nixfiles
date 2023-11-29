@@ -18,6 +18,7 @@
         "smartplaylist"
         "embedart"
         "acousticbrainz"
+        "spotify"
       ];
     };
   };

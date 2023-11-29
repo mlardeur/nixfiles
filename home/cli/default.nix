@@ -63,12 +63,15 @@
 
   home.packages = with pkgs; [
     # cli tools
-    grc
-    htop
-    cmatrix
-    neofetch
-    ranger
-    zstd
+    gitui
+    git-town
+    grc       # Console output colors
+    htop      # Monitoring
+    neofetch  
+    grim      # Screenshot
+    slurp     # Screenshot
+    ranger    # File Browser
+    zstd      # Archive tool
 
     # Fonts
     (pkgs.nerdfonts.override { fonts = [ "FiraCode" "Hack" ]; })

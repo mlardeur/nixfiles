@@ -1,19 +1,9 @@
 # Auth with polkit-gnome:
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
-# Desktop notifications
-exec_always pkill mako; exec mako
-
 exec_always autotiling
 
 # GTK3 applications take a long time to start
 exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec hash dbus-update-activation-environment 2>/dev/null && \
      dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
-     
-# Welcome App
-exec dex -a -s /etc/xdg/autostart/:~/.config/autostart/
-
-# Automatic output config
-exec_always pkill kanshi; exec kanshi
-

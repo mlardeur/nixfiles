@@ -42,7 +42,8 @@ exec swayidle -w \
     bindsym $mod+Return exec $term
 
     # Open the power menu
-    bindsym $mod+Shift+e exec $powermenu
+    # bindsym $mod+Shift+e exec $powermenu
+    bindsym $mod+Shift+e exec swaynag -t warning -m 'Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
 
     # Kill focused window
     bindsym $mod+q kill
@@ -51,8 +52,8 @@ exec swayidle -w \
     # Start your launcher
     bindsym $mod+d exec $menu
 
-    # Activities
-    bindsym $mod+p exec ~/.config/wofi/windows.py
+    # Screenshot
+    bindsym $mod+p exec grim -g "$(slurp)" $XDG_PICTURES_DIR/Screenshots/$(date +'%s.png')
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.

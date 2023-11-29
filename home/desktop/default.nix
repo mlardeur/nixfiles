@@ -18,7 +18,6 @@
     pavucontrol
     playerctl
     networkmanagerapplet
-    xdg-desktop-portal
 
     # General
     brave
