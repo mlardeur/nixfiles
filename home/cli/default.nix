@@ -38,25 +38,16 @@
     };
   };
 
-  programs.starship = {
-    enable = false;
-    enableFishIntegration = false;
-  };
-
-  programs.vim = {
-    enable = true;
-    plugins = with pkgs.vimPlugins; [ vim-airline ];
-    settings = { ignorecase = true; };
-    extraConfig = ''
-      set mouse=a
-    '';
-  };
-
   programs.neovim = {
     enable = true;
-    extraConfig = ''
-      set number relativenumber
-    '';
+    viAlias = true;
+    vimAlias = true;
+    vimdiffAlias = true;
+    defaultEditor = true;
+    plugins = with pkgs.vimPlugins; [
+      LazyVim
+      lazygit-nvim
+    ];
   };
 
   fonts.fontconfig.enable = true;
@@ -67,6 +58,7 @@
     git-town
     grc       # Console output colors
     htop      # Monitoring
+    fd      # Find alternative
     neofetch  
     grim      # Screenshot
     slurp     # Screenshot
