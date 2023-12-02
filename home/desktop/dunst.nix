@@ -5,7 +5,7 @@
     enable = true;
     settings = {
       global = {
-        width = 300;
+        width = 330;
         height = 300;
         corner_radius = 10;
         offset = "30x30";

@@ -10,6 +10,8 @@
     ./kanshi.nix
   ];
 
+  colorScheme = inputs.nix-colors.colorSchemes.tokyo-night-terminal-dark;
+
   nixpkgs = {
     config = {
       allowUnfree = true;

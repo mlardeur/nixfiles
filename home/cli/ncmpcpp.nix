@@ -1,4 +1,4 @@
-{ pkgs, ...}:
+{ pkgs, ... }:
 {
   programs.ncmpcpp = {
     enable = true;
@@ -13,6 +13,6 @@
       enable = true;
       network.listenAddress = "any";
     };
-    mpd-mpris.enable =true;
+    mpd-mpris.enable = true;
   };
 }

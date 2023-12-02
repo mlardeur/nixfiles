@@ -56,14 +56,14 @@
     # cli tools
     gitui
     git-town
-    grc       # Console output colors
-    htop      # Monitoring
-    fd      # Find alternative
-    neofetch  
-    grim      # Screenshot
-    slurp     # Screenshot
-    ranger    # File Browser
-    zstd      # Archive tool
+    grc # Console output colors
+    htop # Monitoring
+    fd # Find alternative
+    neofetch
+    grim # Screenshot
+    slurp # Screenshot
+    ranger # File Browser
+    zstd # Archive tool
 
     # Fonts
     (pkgs.nerdfonts.override { fonts = [ "FiraCode" "Hack" ]; })

@@ -29,9 +29,9 @@
   i18n.defaultLocale = "en_US.UTF-8";
   console.useXkbConfig = true;
 
-  
+
   services = {
-    
+
     # Enable the X11 windowing system. Configure keymap in X11
     xserver = {
       # enable = true;
@@ -40,7 +40,7 @@
       exportConfiguration = true;
       xkbOptions = "eurosign:e,caps:escape";
     };
-    
+
     # Enable CUPS to print documents.
     printing.enable = true;
     avahi = {
@@ -57,7 +57,7 @@
       pulse.enable = true;
       jack.enable = true;
     };
-    
+
     # List services that you want to enable:
     gvfs.enable = true; # Mount, trash, and other functionalities
     tumbler.enable = true; # Thumbnail support for images
@@ -74,7 +74,7 @@
   security = {
     polkit.enable = true;
     rtkit.enable = true;
-    pam.services.swaylock = {};
+    pam.services.swaylock = { };
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -124,7 +124,7 @@
       thunar-archive-plugin
     ];
   };
-    
+
 
   systemd = {
     user.services.polkit-gnome-authentication-agent-1 = {
