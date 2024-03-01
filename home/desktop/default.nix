@@ -9,7 +9,7 @@
     ./gtk.nix
     ./sway.nix
     ./waybar.nix
-    #    ./hyprland.nix
+    # ./hyprland.nix
   ];
 
   # Packages that should be installed to the user profile.
@@ -18,7 +18,6 @@
     libnotify
     pavucontrol
     playerctl
-    networkmanagerapplet
 
     # General
     brave
@@ -30,16 +29,22 @@
     protonvpn-gui
 
     # Multimedia
-    tidal-hifi
+    # tidal-hifi
     spotify
     jellyfin-media-player
 
   ];
 
   # Music and media player 
-  programs.mpv = {
-    enable = true;
+  programs = {
+    mpv.enable = true;
+    eww = {
+      enable = true;
+      package = pkgs.eww-wayland;
+      configDir = ./eww;
+    };
   };
+
 
   services = {
     mpd = {
@@ -50,6 +55,6 @@
 
     # Applets, shown in tray
     # Networking
-    network-manager-applet.enable = true;
+    # network-manager-applet.enable = true;
   };
 }

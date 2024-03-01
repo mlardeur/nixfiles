@@ -18,6 +18,11 @@
     ];
   };
 
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+  };
+
   programs.keychain = {
     enable = true;
     enableFishIntegration = true;
@@ -59,6 +64,7 @@
     grc # Console output colors
     htop # Monitoring
     fd # Find alternative
+    eza # ls alternative
     neofetch
     grim # Screenshot
     slurp # Screenshot

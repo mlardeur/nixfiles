@@ -5,6 +5,7 @@
     inputs.nix-colors.homeManagerModules.default
     ../../home/cli
     ../../home/programs/dev.nix
+    ../../home/programs/datasciences.nix
     ../../home/programs/gaming.nix
     ../../home/desktop
     ./kanshi.nix
