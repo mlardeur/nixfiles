@@ -8,7 +8,7 @@
 
     #Latest stable branch of nixpkgs, used for version rollback
     # The current latest version is 23.05
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.05";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.11";
 
     # Home Manager
     home-manager = {
@@ -29,14 +29,12 @@
       inherit (self) outputs;
       system = "x86_64-linux";
       pkgs = import nixpkgs {
-        system = system;
+        inherit system;
         config.allowUnfree = true;
-        overlays = [ nixgl.overlay ];
       };
       pkgs-stable = import nixpkgs-stable {
-        system = system;
+        inherit system;
         config.allowUnfree = true;
-        overlays = [ nixgl.overlay ];
       };
     in
     {
@@ -63,17 +61,17 @@
           ];
         };
         "zion@zion" = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
+          pkgs = pkgs-stable;
           extraSpecialArgs = { inherit inputs outputs; };
           modules = [
             ./hosts/zion
           ];
         };
         "mlardeur@maxime-dell" = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
+          pkgs = pkgs // { overlays = [ nixgl.overlay ]; };
           extraSpecialArgs = { inherit inputs outputs; };
           modules = [
-            ./hosts/maxime-dell
+            ./hosts/maxime-dell/mlardeur.nix
           ];
         };
       };

@@ -2,7 +2,7 @@
 
 entries="Logout Suspend Reboot Shutdown"
 
-selected=$(printf '%s\n' $entries | wofi --conf=$HOME/.config/wofi/config.power --style=$HOME/.config/wofi/style.widgets.css | awk '{print tolower($1)}')
+selected=$(rofi -show menu -modi menu:$HOME/.config/rofi/rofi-power-menu)
 
 case $selected in
   logout)
