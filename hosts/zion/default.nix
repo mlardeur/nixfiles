@@ -1,10 +1,13 @@
-{ inputs, lib, config, pkgs, ... }:
+{ inputs, pkgs, ... }:
 
 {
   imports = [
     ../../home/cli
     ../../home/cli/beets.nix
+    ../../home/desktop/kitty.nix
   ];
+
+  colorScheme = inputs.nix-colors.colorSchemes.tokyo-night-terminal-dark;
 
   nixpkgs = {
     config = {
