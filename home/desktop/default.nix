@@ -29,10 +29,9 @@
     protonvpn-gui
 
     # Multimedia
-    # tidal-hifi
+    tidal-hifi
     spotify
     jellyfin-media-player
-
   ];
 
   # Music and media player 

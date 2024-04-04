@@ -6,6 +6,7 @@
     jetbrains-toolbox
     vscode
     devbox
+    google-cloud-sdk
   ];
 
 }

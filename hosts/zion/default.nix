@@ -2,6 +2,7 @@
 
 {
   imports = [
+    inputs.nix-colors.homeManagerModules.default
     ../../home/cli
     ../../home/cli/beets.nix
     ../../home/desktop/kitty.nix
