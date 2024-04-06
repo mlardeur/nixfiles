@@ -105,22 +105,6 @@
     python311Packages.pygobject3
   ];
 
-
-  xdg.portal = {
-    enable = true;
-    wlr.enable = true;
-    extraPortals = with pkgs; [
-      xdg-desktop-portal-gtk
-    ];
-    config = {
-      common = {
-        default = [
-          "gtk"
-        ];
-      };
-    };
-  };
-
   # System programs
   programs.ssh.startAgent = true;
   programs.dconf.enable = true;

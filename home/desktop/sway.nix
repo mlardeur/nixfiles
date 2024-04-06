@@ -11,7 +11,7 @@
   wayland.windowManager.sway = {
     enable = true;
     systemd.enable = true;
-    systemd.xdgAutostart = false;
+    systemd.xdgAutostart = true;
     xwayland = true;
     wrapperFeatures.gtk = true;
     config = {
@@ -25,10 +25,20 @@
         smartGaps = true;
       };
       assigns = {
-        "2" = [{ app_id = "Chromium"; }];
+        "2" = [{ app_id = "Chromium"; } { app_id = "Brave-browser"; }];
         "5" = [{ app_id = "firefox"; }];
       };
       bars = [{ command = "waybar"; }];
+      input = {
+        "type:keyboard" = {
+          xkb_layout = "fr,us";
+          xkb_variant = ",altgr-intl";
+        };
+        "16700:8453:Dell_Dell_USB_Keyboard" = {
+          xkb_layout = "us";
+          xkb_variant = "altgr-intl";
+        };
+      };
       startup = [
         { command = "autotiling"; always = true; }
         { command = "nm-applet --indicator"; always = true; }
