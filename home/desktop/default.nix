@@ -26,6 +26,7 @@
     # Security
     authy
     bitwarden
+    protonvpn-cli
     protonvpn-gui
 
     # Multimedia
