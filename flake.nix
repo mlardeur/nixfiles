@@ -7,13 +7,19 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     #Latest stable branch of nixpkgs, used for version rollback
-    # The current latest version is 23.05
+    # The current latest version is 23.11
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.11";
 
     # Home Manager
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Home Manager Stable
+    home-manager-stable = {
+      url = "github:nix-community/home-manager/release-23.11";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
     };
 
     # NixGL
@@ -24,7 +30,7 @@
 
   };
 
-  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, nixgl, ... } @ inputs:
+  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, home-manager-stable, nixgl, ... } @ inputs:
     let
       inherit (self) outputs;
       system = "x86_64-linux";
@@ -60,7 +66,7 @@
             ./hosts/athena/maxime.nix
           ];
         };
-        "zion@zion" = home-manager.lib.homeManagerConfiguration {
+        "zion@zion" = home-manager-stable.lib.homeManagerConfiguration {
           pkgs = pkgs-stable;
           extraSpecialArgs = { inherit inputs outputs; };
           modules = [
