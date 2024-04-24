@@ -57,6 +57,12 @@
 
   fonts.fontconfig.enable = true;
 
+  home = {
+    sessionPath = [
+      "$HOME/.local/bin"
+    ];
+  };
+
   home.packages = with pkgs; [
     # cli tools
     gitui
