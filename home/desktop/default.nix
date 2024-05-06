@@ -24,7 +24,6 @@
     firefox-wayland
 
     # Security
-    authy
     bitwarden
     protonvpn-cli
     protonvpn-gui

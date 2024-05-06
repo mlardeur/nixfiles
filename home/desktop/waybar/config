@@ -213,12 +213,13 @@
         "max-length": 40,
         "escape": true,
         "format-icons": {
+            "tidal": "🎜", 
             "spotify": "",
             "default": "🎜"
         },
-        "on-click": "playerctl -p spotify play-pause",
-        "on-scroll-up": "playerctl -p spotify next",
-        "on-scroll-down": "playerctl -p spotify previous",
-        "exec": "$HOME/.config/waybar/scripts/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+        "on-click": "playerctl -p tidal-hifi,spotify play-pause",
+        "on-scroll-up": "playerctl -p tidal-hifi,spotify next",
+        "on-scroll-down": "playerctl -p tidal-hifi,spotify previous",
+        "exec": "$HOME/.config/waybar/scripts/mediaplayer.py --exclude firefox,brave 2> /dev/null" // Filter player based on name
     }
 }

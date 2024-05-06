@@ -13,8 +13,8 @@ input type:touchpad {
 # Read `man 5 sway-input` for more information about this section.
 #
 input type:keyboard {
-    xkb_layout fr,us
-    xkb_variant ,altgr-intl
+    xkb_layout us,fr
+    xkb_variant altgr-intl,
 }
 
 input "16700:8453:Dell_Dell_USB_Keyboard" {
