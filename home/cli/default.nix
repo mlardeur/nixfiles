@@ -3,6 +3,7 @@
 {
   imports = [
     ./git.nix
+    ./ssh.nix
   ];
 
   programs.bash.enable = true;

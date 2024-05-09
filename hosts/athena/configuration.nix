@@ -36,9 +36,11 @@
     xserver = {
       # enable = true;
       # services.xserver.libinput.enable = true;
-      layout = "fr";
       exportConfiguration = true;
-      xkbOptions = "eurosign:e,caps:escape";
+      xkb = {
+        layout = "fr";
+        options = "eurosign:e,caps:escape";
+      };
     };
 
     # Enable CUPS to print documents.
@@ -66,6 +68,14 @@
 
   };
 
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-wlr
+      xdg-desktop-portal-gtk
+    ];
+    config.common.default = "*";
+  };
 
   # Enable sound.
   sound.enable = true;
