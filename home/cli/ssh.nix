@@ -9,4 +9,9 @@
       };
     };
   };
+
+  home.file.".ssh/config" = {
+    target = ".ssh/config_source";
+    onChange = ''cat ~/.ssh/config_source > ~/.ssh/config && chmod 600 ~/.ssh/config'';
+  };
 }
