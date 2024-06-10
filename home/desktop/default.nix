@@ -12,6 +12,10 @@
     # ./hyprland.nix
   ];
 
+  services.flatpak.packages = [
+    { appId = "dev.aunetx.deezer"; origin = "flathub";  }
+  ];
+
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
     # System
@@ -30,7 +34,6 @@
 
     # Multimedia
     tidal-hifi
-    spotify
     jellyfin-media-player
   ];
 

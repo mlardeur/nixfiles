@@ -3,6 +3,7 @@
 {
   imports = [
     inputs.nix-colors.homeManagerModules.default
+    inputs.sops-nix.homeManagerModules.sops
     ../../home/cli
     ../../home/programs/dev.nix
     ../../home/programs/datasciences.nix

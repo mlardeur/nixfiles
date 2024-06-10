@@ -2,35 +2,32 @@
   description = "NixOS configuration";
 
   inputs = {
-
     # Default to the nixos-unstable branch
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-
     #Latest stable branch of nixpkgs, used for version rollback
     # The current latest version is 23.11
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.11";
-
     # Home Manager
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
     # Home Manager Stable
     home-manager-stable = {
       url = "github:nix-community/home-manager/release-23.11";
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
-
     # NixGL
     nixgl.url = "github:guibou/nixGL";
-
     # Nix Colors
     nix-colors.url = "github:misterio77/nix-colors";
-
+    # Sops Secrets Security 
+    sops-nix.url = "github:Mic92/sops-nix";
+    # Faltpak module
+    flatpaks.url = "github:gmodena/nix-flatpak/main";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, home-manager-stable, nixgl, ... } @ inputs:
+  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, home-manager-stable, nixgl, flatpaks, ... } @ inputs:
     let
       inherit (self) outputs;
       system = "x86_64-linux";
@@ -63,6 +60,7 @@
           inherit pkgs;
           extraSpecialArgs = { inherit inputs outputs; };
           modules = [
+            flatpaks.homeManagerModules.nix-flatpak
             ./hosts/athena/maxime.nix
           ];
         };
@@ -77,6 +75,7 @@
           pkgs = pkgs // { overlays = [ nixgl.overlay ]; };
           extraSpecialArgs = { inherit inputs outputs; };
           modules = [
+            flatpaks.homeManagerModules.nix-flatpak 
             ./hosts/maxime-dell/mlardeur.nix
           ];
         };
