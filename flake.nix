@@ -25,9 +25,11 @@
     sops-nix.url = "github:Mic92/sops-nix";
     # Faltpak module
     flatpaks.url = "github:gmodena/nix-flatpak/main";
+    # Flathub Cli
+    fh.url = "https://flakehub.com/f/DeterminateSystems/fh/*.tar.gz";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, home-manager-stable, nixgl, flatpaks, ... } @ inputs:
+  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, home-manager-stable, nixgl, flatpaks, fh, ... } @ inputs:
     let
       inherit (self) outputs;
       system = "x86_64-linux";
@@ -48,6 +50,9 @@
       nixosConfigurations = {
         athena = nixpkgs.lib.nixosSystem {
           modules = [
+            {
+              environment.systemPackages = [ fh.packages.x86_64-linux.default ];
+            }
             ./hosts/athena/configuration.nix
           ];
         };
@@ -60,7 +65,6 @@
           inherit pkgs;
           extraSpecialArgs = { inherit inputs outputs; };
           modules = [
-            flatpaks.homeManagerModules.nix-flatpak
             ./hosts/athena/maxime.nix
           ];
         };
@@ -75,7 +79,6 @@
           pkgs = pkgs // { overlays = [ nixgl.overlay ]; };
           extraSpecialArgs = { inherit inputs outputs; };
           modules = [
-            flatpaks.homeManagerModules.nix-flatpak 
             ./hosts/maxime-dell/mlardeur.nix
           ];
         };

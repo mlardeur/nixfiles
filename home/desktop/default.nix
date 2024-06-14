@@ -1,7 +1,8 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   imports = [
+    inputs.flatpaks.homeManagerModules.nix-flatpak
     ../cli/ncmpcpp.nix
     ./kitty.nix
     ./rofi.nix
@@ -12,9 +13,13 @@
     # ./hyprland.nix
   ];
 
-  services.flatpak.packages = [
-    { appId = "dev.aunetx.deezer"; origin = "flathub";  }
-  ];
+  services.flatpak = {
+    enable = true;
+    uninstallUnmanaged = true;
+    packages = [
+      { appId = "dev.aunetx.deezer"; origin = "flathub"; }
+    ];
+  };
 
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
@@ -33,7 +38,6 @@
     protonvpn-gui
 
     # Multimedia
-    tidal-hifi
     jellyfin-media-player
   ];
 

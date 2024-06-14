@@ -9,4 +9,9 @@
     google-cloud-sdk
   ];
 
+  services.flatpak = {
+    packages = [
+      { appId = "com.getpostman.Postman"; origin = "flathub"; }
+    ];
+  };
 }
