@@ -59,6 +59,9 @@
     config = {
       common = {
         default = [
+          "wlr"
+        ];
+        "org.freedesktop.impl.portal.FileChooser" = [
           "gtk"
         ];
       };

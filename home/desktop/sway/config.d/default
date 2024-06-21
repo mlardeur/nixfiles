@@ -16,7 +16,7 @@ set $term kitty
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 # set $menu wofi -c ~/.config/wofi/config -I
-set $menu rofi -show drun -show-icons
+set $menu rofi -show drun -show-icons -run-shell-command '{terminal} -e fish -ic "{cmd} && read"'
 
 set $powermenu ~/.config/waybar/scripts/power-menu.sh
 
