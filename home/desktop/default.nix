@@ -27,6 +27,7 @@
     libnotify
     pavucontrol
     playerctl
+    qdirstat
 
     # General
     brave

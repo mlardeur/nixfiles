@@ -6,6 +6,7 @@
     jetbrains-toolbox
     vscode
     devbox
+    bruno
     google-cloud-sdk
   ];
 
@@ -14,11 +15,5 @@
       # Go to fruition front folder and open webstorm from the local nix shell
       fruition-front = "direnv exec /data/DevProjects/fruition/fruition-front webstorm";
     };
-  };
-
-  services.flatpak = {
-    packages = [
-      { appId = "com.getpostman.Postman"; origin = "flathub"; }
-    ];
   };
 }
