@@ -5,6 +5,8 @@
 { config, pkgs, ... }:
 
 {
+  nixpkgs.config.allowUnfree = true;
+  
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   imports =
@@ -109,10 +111,6 @@
 
     # Home Manager module
     home-manager
-
-    # Python Stuff
-    python3
-    python311Packages.pygobject3
   ];
 
   # System programs

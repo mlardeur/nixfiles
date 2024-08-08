@@ -1,4 +1,7 @@
-#!/usr/bin/env python3
+#!/usr/bin/env nix-shell
+#!nix-shell -i python -p playerctl python3 python311Packages.pygobject3
+
+
 import gi
 gi.require_version("Playerctl", "2.0")
 from gi.repository import Playerctl, GLib

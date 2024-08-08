@@ -4,10 +4,11 @@
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
     jetbrains-toolbox
+    jetbrains.webstorm
     vscode
     devbox
     bruno
-    google-cloud-sdk
+    (google-cloud-sdk.withExtraComponents [ google-cloud-sdk.components.kubectl ])
   ];
 
   home = {

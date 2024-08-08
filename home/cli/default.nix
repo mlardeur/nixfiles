@@ -69,6 +69,7 @@
     gitui
     git-lfs
     git-town
+    git-lfs
     grc # Console output colors
     htop # Monitoring
     fd # Find alternative
