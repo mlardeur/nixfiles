@@ -30,6 +30,14 @@
     music = "/mnt/zion/music";
   };
 
+  programs.bash = {
+    initExtra = ''
+      if [[ $TTY == /dev/tty1 ]]; then
+        exec sway
+      fi
+    '';
+  };
+
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }

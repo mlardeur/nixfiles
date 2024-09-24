@@ -24,14 +24,6 @@
     nix-direnv.enable = true;
   };
 
-  programs.keychain = {
-    enable = true;
-    enableFishIntegration = true;
-    keys = [
-      "id_ed25519"
-    ];
-  };
-
   programs.autojump = {
     enable = true;
     enableFishIntegration = true;
@@ -75,8 +67,6 @@
     fd # Find alternative
     eza # ls alternative
     neofetch
-    grim # Screenshot
-    slurp # Screenshot
     ranger # File Browser
     zstd # Archive tool
 

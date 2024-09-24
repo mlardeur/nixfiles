@@ -30,6 +30,8 @@
     qdirstat
 
     # General
+    grim # Screenshot
+    slurp # Screenshot
     brave
     firefox-wayland
 
