@@ -67,6 +67,7 @@
   home.packages = with pkgs; [
     # cli tools
     gitui
+    git-lfs
     git-town
     grc # Console output colors
     htop # Monitoring

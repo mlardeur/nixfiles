@@ -3,6 +3,8 @@ exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
 exec_always autotiling
 
+exec_always kanshi
+
 # GTK3 applications take a long time to start
 exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec hash dbus-update-activation-environment 2>/dev/null && \

@@ -52,6 +52,9 @@ exec swayidle -w \
     # Start your launcher
     bindsym $mod+d exec $menu
 
+    # Suspend mode
+    bindsym $mod+h exec systemctl suspend
+
     # Screenshot
     bindsym $mod+p exec grim -g "$(slurp)" $XDG_PICTURES_DIR/Screenshots/$(date +'%s.png')
 
