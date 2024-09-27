@@ -1,5 +1,5 @@
 #!/usr/bin/env nix-shell
-#!nix-shell -i python -p playerctl python3 python311Packages.pygobject3
+#!nix-shell -i python -p playerctl python3 python312Packages.pygobject3
 
 
 import gi
@@ -116,6 +116,7 @@ class PlayerManager:
         player_name = player.props.player_name
         artist = player.get_artist()
         title = player.get_title()
+        title = title.replace("&", "&amp;")
 
         track_info = ""
         if player_name == "spotify" and "mpris:trackid" in metadata.keys() and ":ad:" in player.props.metadata["mpris:trackid"]:

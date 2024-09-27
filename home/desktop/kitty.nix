@@ -3,7 +3,7 @@
 {
   programs.kitty = {
     enable = true;
-    theme = "Tokyo Night";
+    themeFile = "tokyo_night_night";
     font = {
       package = pkgs.nerdfonts.override { fonts = [ "Hack" ]; }; # Tested JetBrainsMono, FiraCode, DroidSansMono, Hack
       name = "Hack";
