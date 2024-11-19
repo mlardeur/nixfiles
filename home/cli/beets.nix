@@ -1,6 +1,7 @@
 { config, pkgs, ... }:
 
 {
+  # Not used anymore (=> lidarr on Nebula)
   programs.beets = {
     enable = true;
     settings = {

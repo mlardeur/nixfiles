@@ -42,6 +42,7 @@
 
     # Multimedia
     jellyfin-media-player
+    feishin
   ];
 
   # Music and media player 

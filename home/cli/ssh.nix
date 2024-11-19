@@ -4,8 +4,11 @@
     addKeysToAgent = "yes";
     matchBlocks = {
       "zion" = {
-        hostname = "192.168.1.2";
+        hostname = "192.168.1.4";
         user = "zion";
+      };
+      "nebula" = {
+        hostname = "192.168.1.8";
       };
     };
   };
