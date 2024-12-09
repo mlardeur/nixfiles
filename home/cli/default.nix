@@ -59,9 +59,9 @@
   home.packages = with pkgs; [
     # cli tools
     gitui
+    gitflow
     git-lfs
     git-town
-    git-lfs
     grc # Console output colors
     htop # Monitoring
     fd # Find alternative

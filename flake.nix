@@ -5,8 +5,8 @@
     # Default to the nixos-unstable branch
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     #Latest stable branch of nixpkgs, used for version rollback
-    # The current latest version is 23.11
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
+    # The current latest version is 24.11
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.11";
     # Home Manager
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -14,7 +14,7 @@
     };
     # Home Manager Stable
     home-manager-stable = {
-      url = "github:nix-community/home-manager/release-24.05";
+      url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
     # NixGL
@@ -56,11 +56,26 @@
             ./hosts/athena/configuration.nix
           ];
         };
+        hera = nixpkgs.lib.nixosSystem {
+          modules = [
+            {
+              environment.systemPackages = [ fh.packages.x86_64-linux.default ];
+            }
+            ./hosts/hera/configuration.nix
+          ];
+        };
       };
 
       # Standalone home-manager configuration entrypoint available through
       # 'home-manager switch --flake .#username@hostname'
       homeConfigurations = {
+        "maxime@hera" = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          extraSpecialArgs = { inherit inputs outputs; };
+          modules = [
+            ./hosts/hera/maxime.nix
+          ];
+        };
         "maxime@athena" = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           extraSpecialArgs = { inherit inputs outputs; };
