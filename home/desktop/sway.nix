@@ -1,7 +1,8 @@
-{ pkgs, config, ... }:
+{ pkgs, config, lib, ... }:
 
 {
   home.packages = with pkgs; [
+    polkit_gnome
     autotiling
     swaybg
     swayidle
@@ -59,9 +60,14 @@
       source = ./sway;
       recursive = true;
     };
-    "${config.xdg.userDirs.pictures}/Wallpapers/zen.png" = {
-      source = ./Pictures/zen.png;
+    "${config.xdg.userDirs.pictures}/Wallpapers" = {
+      source = ./Pictures;
     };
   };
 
+  home.activation = {
+    polkitAgent = lib.hm.dag.entryAfter ["sway-session"] ''
+      ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1 &
+    '';
+  };
 }
