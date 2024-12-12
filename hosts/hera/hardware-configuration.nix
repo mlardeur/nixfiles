@@ -5,7 +5,8 @@
 
 {
   imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
+    [
+      (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
@@ -14,31 +15,36 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/9eae6b25-4ccb-4c91-8733-d21ab5423ca0";
+    {
+      device = "/dev/disk/by-uuid/9eae6b25-4ccb-4c91-8733-d21ab5423ca0";
       fsType = "btrfs";
-      options = [ "subvol=@nixos" "compress=zstd"];
+      options = [ "subvol=@nixos" "compress=zstd" ];
     };
 
   fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/9eae6b25-4ccb-4c91-8733-d21ab5423ca0";
+    {
+      device = "/dev/disk/by-uuid/9eae6b25-4ccb-4c91-8733-d21ab5423ca0";
       fsType = "btrfs";
-      options = [ "subvol=@home" "compress=zstd"];
+      options = [ "subvol=@home" "compress=zstd" ];
     };
 
   fileSystems."/nix" =
-    { device = "/dev/disk/by-uuid/9eae6b25-4ccb-4c91-8733-d21ab5423ca0";
+    {
+      device = "/dev/disk/by-uuid/9eae6b25-4ccb-4c91-8733-d21ab5423ca0";
       fsType = "btrfs";
-      options = [ "subvol=@nix" "noatime" "compress=zstd"];
+      options = [ "subvol=@nix" "noatime" "compress=zstd" ];
     };
 
   fileSystems."/data" =
-    { device = "/dev/disk/by-uuid/9eae6b25-4ccb-4c91-8733-d21ab5423ca0";
+    {
+      device = "/dev/disk/by-uuid/9eae6b25-4ccb-4c91-8733-d21ab5423ca0";
       fsType = "btrfs";
-      options = [ "subvol=@data" "compress=zstd"];
+      options = [ "subvol=@data" "compress=zstd" ];
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/E4A8-58E5";
+    {
+      device = "/dev/disk/by-uuid/E4A8-58E5";
       fsType = "vfat";
       options = [ "fmask=0022" "dmask=0022" ];
     };
@@ -55,7 +61,7 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-  
+
   hardware.graphics = {
     enable = true;
     enable32Bit = true;

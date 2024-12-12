@@ -66,7 +66,7 @@
   };
 
   home.activation = {
-    polkitAgent = lib.hm.dag.entryAfter ["sway-session"] ''
+    polkitAgent = lib.hm.dag.entryAfter [ "sway-session" ] ''
       ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1 &
     '';
   };

@@ -90,13 +90,6 @@
             ./hosts/zion
           ];
         };
-        "mlardeur@maxime-dell" = home-manager.lib.homeManagerConfiguration {
-          pkgs = pkgs // { overlays = [ nixgl.overlay ]; };
-          extraSpecialArgs = { inherit inputs outputs; };
-          modules = [
-            ./hosts/maxime-dell/mlardeur.nix
-          ];
-        };
       };
     };
 }

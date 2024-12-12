@@ -7,11 +7,13 @@
 {
   nixpkgs.config.allowUnfree = true;
 
-  nix.settings.experimental-features = ["nix-command" "flakes"];
-  
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ../shared/samba-mount.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -21,7 +23,7 @@
   networking.hostName = "hera"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
   # Set your time zone.
   time.timeZone = "Europe/Paris";
@@ -49,9 +51,9 @@
     alsa.enable = true;
     pulse.enable = true;
   };
-  
+
   # List other services that must be enabled:
-   # Mount, trash, and other functionalities
+  # Mount, trash, and other functionalities
   services.gvfs.enable = true;
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
@@ -81,13 +83,15 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-     git 
-     openssl
-     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-     wget
-     
-     # Home Manager module
-     home-manager
+    git
+    openssl
+    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    wget
+
+    cifs-utils # For mount.cifs
+
+    # Home Manager module
+    home-manager
   ];
 
   # System programs
@@ -103,6 +107,12 @@
 
   virtualisation.libvirtd.enable = true;
   programs.virt-manager.enable = true;
+
+  mountSambaShares = {
+    enable = true;
+    uid = 1001;
+    gid = 100;
+  };
 
   # This option defines the first version of NixOS you have installed on this particular machine,
   # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.

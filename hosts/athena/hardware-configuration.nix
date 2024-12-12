@@ -76,7 +76,7 @@
   # For mount.cifs, required unless domain name resolution is not needed.
   environment.systemPackages = [ pkgs.cifs-utils ];
   fileSystems."/mnt/zion" = {
-    device = "//192.168.1.4/media";
+    device = "//192.168.1.4/zion";
     fsType = "cifs";
     options =
       let
