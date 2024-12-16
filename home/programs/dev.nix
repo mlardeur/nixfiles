@@ -14,7 +14,7 @@
   home = {
     shellAliases = {
       # Go to fruition front folder and open webstorm from the local nix shell
-      fruition-front = "direnv exec /data/DevProjects/fruition/fruition-front webstorm";
+      fruition-front = "direnv exec /data/workspace/fruition/fruition-front webstorm";
     };
   };
 }

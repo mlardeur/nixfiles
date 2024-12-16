@@ -3,6 +3,7 @@
 {
   home.packages = with pkgs; [
     polkit_gnome
+    gnome-keyring
     autotiling
     swaybg
     swayidle
@@ -52,6 +53,10 @@
   };
 
   services.swayidle = {
+    enable = true;
+  };
+
+  services.gnome-keyring = {
     enable = true;
   };
 

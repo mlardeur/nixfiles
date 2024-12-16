@@ -69,6 +69,7 @@
     neofetch
     ranger # File Browser
     zstd # Archive tool
+    lm_sensors
 
     # Fonts
     (pkgs.nerdfonts.override { fonts = [ "FiraCode" "Hack" ]; })

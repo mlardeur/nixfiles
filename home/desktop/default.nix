@@ -8,6 +8,7 @@
     ./rofi.nix
     ./dunst.nix
     ./gtk.nix
+    ./river
     ./sway.nix
     ./waybar.nix
     # ./hyprland.nix

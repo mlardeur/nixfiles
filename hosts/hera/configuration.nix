@@ -14,6 +14,7 @@
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ../shared/samba-mount.nix
+      ../shared/hosts.nix
     ];
 
   # Use the systemd-boot EFI boot loader.

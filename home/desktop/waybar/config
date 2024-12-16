@@ -2,7 +2,7 @@
 {
     "layer": "top",
     "position": "top",
-
+    "width": 1920,
     // If height property would be not present, it'd be calculated dynamically
     "height": 30,
 
@@ -19,12 +19,12 @@
 
     "modules-right": [
         "pulseaudio",
-        "backlight",
+        // "backlight",
         "disk",
         "memory",
         "cpu",
         "temperature",
-        "battery",
+        // "battery",
         "tray",
         "custom/power",
     ],

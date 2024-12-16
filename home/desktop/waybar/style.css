@@ -49,9 +49,9 @@
 
 /* The whole bar */
 #waybar {
-    background: transparent;
+    background-clip: padding-box;
     color: @base07;
-    background-color: @base02;
+    background-color: rgba(0,0,0,0);
     font-family: FiraCode;
     font-size: 14px;
 }
@@ -95,14 +95,14 @@
 
 /* Left & Right module */
 #clock, 
-#battery {
+#battery,
+#pulseaudio {
     border-radius: 15px 15px 15px 15px;
     margin-right: 2px;
 }
 
 /* Left module */
-#disk, 
-#pulseaudio {
+#disk {
     border-radius: 15px 0px 0px 15px;
     margin-left: 2px;
 }
