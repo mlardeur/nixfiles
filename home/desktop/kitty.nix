@@ -5,7 +5,7 @@
     enable = true;
     themeFile = "tokyo_night_night";
     font = {
-      package = pkgs.nerdfonts.override { fonts = [ "Hack" ]; }; # Tested JetBrainsMono, FiraCode, DroidSansMono, Hack
+      package = pkgs.nerd-fonts.hack; # Tested JetBrainsMono, FiraCode, DroidSansMono, Hack
       name = "Hack";
     };
     shellIntegration.enableFishIntegration = true;

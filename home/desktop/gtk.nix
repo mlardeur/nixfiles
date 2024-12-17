@@ -3,7 +3,7 @@
   gtk = {
     enable = true;
     font = {
-      package = pkgs.noto-fonts;
+      package = pkgs.noto-fonts-lgc-plus;
       name = "Noto Sans 10";
     };
     theme = {

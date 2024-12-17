@@ -72,6 +72,7 @@
     lm_sensors
 
     # Fonts
-    (pkgs.nerdfonts.override { fonts = [ "FiraCode" "Hack" ]; })
+    pkgs.nerd-fonts.fira-code
+    pkgs.nerd-fonts.hack
   ];
 }

@@ -81,15 +81,15 @@
     };
   };
 
-  services = {
-    mpd = {
-      enable = true;
-      network.listenAddress = "any";
-    };
-    mpd-mpris.enable = true;
+  # MPD Music Player Daemon
+  # services.mpd = {
+  #     enable = true;
+  #     network.listenAddress = "any";
+  #   };
+  # services.mpd-mpris.enable = true;
 
-    # Applets, shown in tray
-    # Networking
-    # network-manager-applet.enable = true;
-  };
+  # Applets, shown in tray
+  # Networking
+  # services.network-manager-applet.enable = true;
+
 }

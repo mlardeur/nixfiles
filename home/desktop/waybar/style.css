@@ -52,7 +52,7 @@
     background-clip: padding-box;
     color: @base07;
     background-color: rgba(0,0,0,0);
-    font-family: FiraCode;
+    font-family: "Firacode", "FiraCode Nerd Font";
     font-size: 14px;
 }
 

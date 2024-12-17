@@ -1,0 +1,18 @@
+2024-12-17 10:33:32,281 __main__ INFO:187 Creating player manager
+2024-12-17 10:33:32,286 __main__ INFO:59 Initialize new player: chromium
+2024-12-17 10:33:32,288 __main__ INFO:59 Initialize new player: mpd
+2024-12-17 10:36:01,024 __main__ INFO:187 Creating player manager
+2024-12-17 10:36:01,029 __main__ INFO:59 Initialize new player: chromium
+2024-12-17 10:36:01,030 __main__ DEBUG:115 Metadata changed for player chromium
+2024-12-17 10:36:01,030 __main__ DEBUG:90 Getting first playing player from 1 players
+2024-12-17 10:36:01,031 __main__ DEBUG:71 Writing output:  Animals As Leaders - Kascade
+2024-12-17 10:36:01,031 __main__ INFO:59 Initialize new player: mpd
+2024-12-17 10:36:01,032 __main__ DEBUG:115 Metadata changed for player mpd
+2024-12-17 10:38:12,638 __main__ INFO:187 Creating player manager
+2024-12-17 10:38:12,638 __main__ INFO:191 Exclude player firefox,brave,mpd
+2024-12-17 10:38:12,643 __main__ INFO:59 Initialize new player: chromium
+2024-12-17 10:38:12,644 __main__ DEBUG:115 Metadata changed for player chromium
+2024-12-17 10:38:12,644 __main__ DEBUG:90 Getting first playing player from 1 players
+2024-12-17 10:38:12,644 __main__ DEBUG:71 Writing output:  Animals As Leaders - Kascade
+2024-12-17 10:38:12,644 __main__ INFO:55 Starting main loop
+2024-12-17 10:38:28,976 __main__ INFO:21 Received signal to stop, exiting
