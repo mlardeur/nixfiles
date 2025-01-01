@@ -13,6 +13,8 @@
     [
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ../shared/samba-mount.nix
+      ../shared/hosts.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -104,6 +106,8 @@
     openssl
     vim
     wget
+
+    cifs-utils # For mount.cifs
 
     # Home Manager module
     home-manager
