@@ -13,8 +13,8 @@
         transparency = 10;
         font = "Droid Sans 10";
         frame_width = 2;
-        foreground = "#${config.colorScheme.colors.base05}";
-        background = "#${config.colorScheme.colors.base00}";
+        foreground = "#${config.colorScheme.palette.base05}";
+        background = "#${config.colorScheme.palette.base00}";
       };
     };
   };

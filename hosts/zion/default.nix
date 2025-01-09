@@ -18,7 +18,7 @@
   home = {
     username = "zion";
     homeDirectory = "/home/zion";
-    stateVersion = "23.05";
+    stateVersion = "24.11";
 
     packages = with pkgs; [
     ];

@@ -81,9 +81,6 @@
     config.common.default = "*";
   };
 
-  # Enable sound.
-  hardware.pulseaudio.enable = false;
-
   security = {
     polkit.enable = true;
     rtkit.enable = true;

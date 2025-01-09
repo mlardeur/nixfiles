@@ -6,6 +6,7 @@
     ../../home/cli
     ../../home/desktop
     ../../home/programs/dev.nix
+    ../../home/programs/gaming.nix
     ./kanshi.nix
   ];
 

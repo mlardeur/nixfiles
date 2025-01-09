@@ -19,6 +19,7 @@
     uninstallUnmanaged = true;
     packages = [
       { appId = "dev.aunetx.deezer"; origin = "flathub"; }
+      { appId = "com.github.tchx84.Flatseal"; origin = "flathub"; }
     ];
   };
 
@@ -29,6 +30,7 @@
     pavucontrol
     playerctl
     qdirstat
+    gparted
 
     # General
     grim # Screenshot

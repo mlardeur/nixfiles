@@ -58,10 +58,6 @@
 
   home.packages = with pkgs; [
     # cli tools
-    gitui
-    gitflow
-    git-lfs
-    git-town
     grc # Console output colors
     htop # Monitoring
     fd # Find alternative
@@ -69,6 +65,7 @@
     neofetch
     ranger # File Browser
     zstd # Archive tool
+    unzip
     lm_sensors
 
     # Fonts

@@ -18,7 +18,7 @@
   home = {
     username = "maxime";
     homeDirectory = "/home/maxime";
-    stateVersion = "23.05";
+    stateVersion = "24.11";
 
     # Packages that should be installed to the user profile.
     packages = with pkgs; [

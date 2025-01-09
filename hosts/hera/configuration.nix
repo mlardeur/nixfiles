@@ -95,6 +95,8 @@
     wget
 
     cifs-utils # For mount.cifs
+    exfatprogs # Format to exFat
+    wireplumber
 
     # Home Manager module
     home-manager
