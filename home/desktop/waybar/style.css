@@ -89,6 +89,7 @@
 #pulseaudio,
 #backlight,
 #battery,
+#network,
 #temperature {
     background-color: @base03;
 }
@@ -96,6 +97,7 @@
 /* Left & Right module */
 #clock, 
 #battery,
+#network,
 #pulseaudio {
     border-radius: 15px 15px 15px 15px;
     margin-right: 2px;
@@ -195,6 +197,25 @@
 
 #window {
     font-weight: bold;
+}
+
+#tags button{
+    padding: 3px;
+    min-width: 20px;
+    border-radius: 15px 15px 15px 15px;
+    color: @base07;
+}
+
+#tags button.occupied{
+    background-color: @base00;
+}
+
+#tags button.focused{
+    background-color: @base03;
+}
+
+#tags button.urgent{
+    background-color: @base08;
 }
 
 #workspaces {

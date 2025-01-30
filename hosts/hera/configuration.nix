@@ -61,6 +61,8 @@
   # List other services that must be enabled:
   # Mount, trash, and other functionalities
   services.gvfs.enable = true;
+  # Thumbnail support for images
+  services.tumbler.enable = true;
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
   # Enable Flatpak

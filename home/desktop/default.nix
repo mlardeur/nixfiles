@@ -1,6 +1,15 @@
 { pkgs, inputs, ... }:
 
 {
+
+  # Allow insecure packages
+  nixpkgs.config.allowUnfree = true;
+
+  # Allow insecure packages
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-31.7.7"
+  ];
+
   imports = [
     inputs.flatpaks.homeManagerModules.nix-flatpak
     ../cli/ncmpcpp.nix

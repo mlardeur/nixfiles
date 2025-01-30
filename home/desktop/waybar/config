@@ -9,16 +9,16 @@
         "sway/workspaces",
         "sway/mode",
         "river/tags",
-        "river/layout",
-        "custom/media",
+        "custom/media"
     ],
  
     "modules-center": [
-        "clock",
+        "clock"
     ],
 
     "modules-right": [
         "pulseaudio",
+        "network",
         // "backlight",
         "disk",
         "memory",
@@ -70,17 +70,13 @@
             "warning": 70,
             "critical": 90,
         },
-        "on-click": "kitty -e 'htop'",
+        "on-click": "kitty -e 'htop'"
     },
 
     "temperature": {
         "thermal-zone": 1,
         "hwmon-path": [
-          "/sys/class/hwmon/hwmon0/temp1_input",
-          "/sys/class/hwmon/hwmon1/temp1_input",
           "/sys/class/hwmon/hwmon2/temp1_input",
-          "/sys/class/hwmon/hwmon3/temp1_input",
-          "/sys/class/hwmon/hwmon4/temp1_input"
         ],
         "critical-threshold": 85,
         "format": "{icon} {temperatureC}°C",
@@ -94,7 +90,7 @@
         "format": "  {}", // Icon: keyboard
         // Signal sent by Sway key binding (~/.config/sway/key-bindings)
         "signal": 1, // SIGHUP
-        "tooltip": false,
+        "tooltip": false
     },
 
     "memory": {
@@ -125,6 +121,28 @@
 
     "river/tags": {
         "num-tags": 9,
+        "set-tags": [
+            2147483649,
+            2147483650,
+            2147483652,
+            2147483656,
+            2147483664,
+            2147483680,
+            2147483712,
+            2147483776,
+            2147483904
+        ],
+        "tag-labels": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "7",
+            "8",
+            "󰎆"
+        ]
     },
 
     "sway/mode": {
@@ -163,9 +181,9 @@
         "format-source": "{volume}% ",
         "format-source-muted": "",
         "format-icons": {
-            "headphone": "",
+            "headphone": "",
             "hands-free": "",
-            "headset": "  ",
+            "headset": "",
             "phone": "",
             "portable": "",
             "car": "",
@@ -173,14 +191,41 @@
         },
         "on-click": "pavucontrol",
         "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%+ -l 1.0",
-        "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-",
+        "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-"
     },
 
     "tray": {
         "icon-size": 18,
-        "spacing": 10,
-     },
+        "spacing": 10
+    },
 
+    "wlr/taskbar": {
+        "all-outputs": false,
+        "current-only":true,
+        "format": "{icon}",
+        "icon-size": 9,
+        "icon-theme": "Papirus",
+        "tooltip-format": "{title}",
+        "on-click": "activate",
+        "on-click-middle": "close"
+    },
+   
+    "wlr/workspaces": {
+        "all-outputs": true,
+        "active-only": false,
+        "format-icons": {
+            "1": "1",
+            "2": "2",
+            "3": "3",
+            "4": "4",
+            "5": "5",
+            "6": "6",
+            "7": "7",
+            "8": "8",
+            "9": "9"
+        }
+    },
+   
     "backlight" :{
          "format": "{percent}% {icon}",
          "format-icons": [""],

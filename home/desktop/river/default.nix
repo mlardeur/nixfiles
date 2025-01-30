@@ -2,7 +2,7 @@
 
 let
   # Actually choose between rivertile and wideriver
-  layout = "rivertile";
+  layout = "wideriver";
 
   # Elevate 2 to the exponent given as an argument 
   pow2 =
@@ -17,8 +17,10 @@ let
     exponent: pow' exponent 2;
 
   # Scratch Pad 
-  scratchTag = pow2 20; # 
-  allButScratchTag = 4294967275; # calculated for 20 with $(( ((1 << 32) - 1) ^ 20 ))
+  scratchTag = pow2 20;
+  # Sticky Tag
+  stickyTag = pow2 31;
+  allButMiscTag = 2146959359; # calculated for 20 with $(( ((1 << 32) - 1) ^ 20 ^ 32))
 
   # 0-9 Tag management
   tagsMap = lib.listToAttrs
@@ -28,7 +30,7 @@ let
           tag = (pow2 (i - 1));
         in
         [
-          { name = "$mod1 ${toString i}"; value = "set-focused-tags ${toString tag}"; } # $mod1+[1-9] to focus tag [0-8]
+          { name = "$mod1 ${toString i}"; value = "set-focused-tags ${toString (tag + stickyTag)}"; } # $mod1+[1-9] to focus tag [0-8]
           { name = "$mod1+Shift ${toString i}"; value = "set-view-tags ${toString tag}"; } # $mod1+Shift+[1-9] to tag focused view with tag [0-8]
           { name = "$mod1+Control ${toString i}"; value = "toggle-focused-tags ${toString tag}"; } # $mod1+Control+[1-9] to toggle focus of tag [0-8]
           { name = "$mod1+Shift+Control ${toString i}"; value = "toggle-view-tags ${toString tag}"; } # $mod1+Shift+Control+[1-9] to toggle tag [0-8] of focused view
@@ -39,10 +41,10 @@ let
   layoutMap =
     if layout == "rivertile" then {
       # $mod1+{Up,Right,Down,Left} to change layout orientation
-      "$mod1 Up" = "send-layout-cmd rivertile \"main-location top\"";
-      "$mod1 Right" = "send-layout-cmd rivertile \"main-location right\"";
-      "$mod1 Down" = "send-layout-cmd rivertile \"main-location bottom\"";
-      "$mod1 Left" = "send-layout-cmd rivertile \"main-location left\"";
+      "$mod1+Shift Up" = "send-layout-cmd rivertile \"main-location top\"";
+      "$mod1+Shift Right" = "send-layout-cmd rivertile \"main-location right\"";
+      "$mod1+Shift Down" = "send-layout-cmd rivertile \"main-location bottom\"";
+      "$mod1+Shift Left" = "send-layout-cmd rivertile \"main-location left\"";
       # $mod1+H and $mod1+L to decrease/increase the main ratio of rivertile(1)
       "$mod1 H" = "send-layout-cmd rivertile \"main-ratio -0.05\"";
       "$mod1 L" = "send-layout-cmd rivertile \"main-ratio +0.05\"";
@@ -51,10 +53,10 @@ let
       "$mod1+Shift L" = "send-layout-cmd rivertile \"main-count -1\"";
     }
     else if layout == "wideriver" then {
-      "$mod1 up" = "send-layout-cmd wideriver \"--layout monocle\"";
-      "$mod1 down" = "send-layout-cmd wideriver \"--layout wide\"";
-      "$mod1 left" = "send-layout-cmd wideriver \"--layout left\"";
-      "$mod1 right" = "send-layout-cmd wideriver \"--layout right\"";
+      "$mod1+Shift Up" = "send-layout-cmd wideriver \"--layout monocle\"";
+      "$mod1+Shift Down" = "send-layout-cmd wideriver \"--layout wide\"";
+      "$mod1+Shift Left" = "send-layout-cmd wideriver \"--layout left\"";
+      "$mod1+Shift Right" = "send-layout-cmd wideriver \"--layout right\"";
       "$mod1 Space" = "send-layout-cmd wideriver \"--layout-toggle\"";
       "$mod1 L" = "send-layout-cmd wideriver \"--ratio +0.05\"";
       "$mod1 H" = "send-layout-cmd wideriver \"--ratio -0.05\"";
@@ -72,25 +74,24 @@ let
       rivertile -view-padding 4 -outer-padding 4 &
     ''
     else if layout == "wideriver" then "
-    wideriver \
-    --layout                       wide        \
-    --layout-alt                   left        \
-    --stack                        even        \
-    --count-master                 1           \
-    --ratio-master                 0.50        \
-    --count-wide-left              0           \
-    --ratio-wide                   0.50        \
-    --smart-gaps                               \
-    --inner-gaps                   6           \
-    --outer-gaps                   2           \
-    --border-width                 1           \
-    --border-width-monocle         0           \
-    --border-width-smart-gaps      0           \
-    --border-color-focused         \"0x${config.colorScheme.palette.base0e}\"  \
-    --border-color-focused-monocle \"0x${config.colorScheme.palette.base0e}\"  \
-    --border-color-unfocused       \"0x${config.colorScheme.palette.base00}\"  \
-    --log-threshold                info        \
-   > \"/tmp/wideriver.\${XDG_VTNR}.\${USER}.log\" 2>&1 &
+    wideriver \\
+    --layout                       left        \\
+    --layout-alt                   wide        \\
+    --stack                        even        \\
+    --count-master                 1           \\
+    --ratio-master                 0.50        \\
+    --count-wide-left              1           \\
+    --ratio-wide                   0.50        \\
+    --smart-gaps                               \\
+    --inner-gaps                   6           \\
+    --outer-gaps                   2           \\
+    --border-width                 1           \\
+    --border-width-monocle         0           \\
+    --border-width-smart-gaps      0           \\
+    --border-color-focused         \"0x${config.colorScheme.palette.base0E}\"  \\
+    --border-color-focused-monocle \"0x${config.colorScheme.palette.base0E}\"  \\
+    --border-color-unfocused       \"0x${config.colorScheme.palette.base00}\"  \\
+    --log-threshold                info        > \"/tmp/wideriver.\${XDG_VTNR}.\${USER}.log\" 2>&1 &
   "
     else "";
 
@@ -122,6 +123,11 @@ in
           "$mod1 K" = "focus-view previous";
           "$mod1+Shift J" = "swap next";
           "$mod1+Shift K" = "swap previous";
+          # $mod+left/right/up/down to focus the left/righ/up/down view in the layout stack
+          "$mod1 Left" = "focus-view left";
+          "$mod1 Right" = "focus-view right";
+          "$mod1 Up" = "focus-view up";
+          "$mod1 Down" = "focus-view down";
           # $mod1+Return to bump the focused view to the top of the layout stack
           "$mod1 Return" = "zoom";
           # $mod1+Alt+{H,J,K,L} to move views
@@ -143,16 +149,15 @@ in
           "$mod1+Shift Space" = "toggle-float";
           "$mod1 F" = "toggle-fullscreen";
           # Toggle the scratchpad with Super+P
-          "Super P" = "toggle-focused-tags ${toString scratchTag}";
+          "$mod1 P" = "toggle-focused-tags ${toString scratchTag}";
           # Send windows to the scratchpad with Super+Shift+P
-          "Super+Shift P" = "set-view-tags ${toString scratchTag}";
+          "$mod1+Shift P" = "set-view-tags ${toString scratchTag}";
+          # Toggle the sticky tag with Super+S
+          "$mod1 S" = "toggle-view-tags ${toString stickyTag}";
           # App specific Keymap use spawn
           "$mod1 N" = "spawn thunar";
           # Drun with rofi
-          "$mod1 D" = "spawn \"rofi -show drun -show-icons\"";
-          # Screenshot with grim and slurp (zone selection) 
-          # TODO fix $(slurp)
-          # "$mod1 P" = "spawn \"grim -g \\\"$(slurp)\\\" $XDG_PICTURES_DIR/Screenshots/$(date +'%s.png')\"";
+          "$mod1 D" = "spawn 'rofi -show drun -show-icons'";
           # Control pulse audio volume with pactl)
           "None XF86AudioRaiseVolume" = "spawn 'wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%+ -l 1.0'";
           "None XF86AudioLowerVolume" = "spawn 'wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-'";
@@ -162,6 +167,10 @@ in
           "None XF86AudioPlay" = "spawn 'playerctl play-pause'";
           "None XF86AudioPrev" = "spawn 'playerctl previous'";
           "None XF86AudioNext" = "spawn 'playerctl next'";
+          # Screenshot with grim and slurp (zone selection) 
+          # TODO fix $(slurp)
+          #"$mod1 Print" = "spawn \"grim -g \\\"$(slurp)\\\" $XDG_PICTURES_DIR/Screenshots/$(date +'%s.png')\"";
+          "Print" = "spawn \"grim -g $XDG_PICTURES_DIR/Screenshots/$(date +'%s.png')\"";
         } // tagsMap // layoutMap;
       };
       map-pointer = {
@@ -172,13 +181,19 @@ in
           "$mod1 BTN_MIDDLE" = "toggle-float";
         };
       };
+      focus-follows-cursor = "normal";
       spawn = [
         "waybar"
       ];
-      spawn-tagmask = toString allButScratchTag;
-      rule-add = "ssd";
+      spawn-tagmask = toString allButMiscTag;
+      rule-add = [
+        "ssd"
+        "-app-id pavucontrol float"
+      ];
+      default-attach-mode = "below";
       default-layout = layout; # rivertile, wideriver, ... 
       set-repeat = "50 300";
+      border-color-focused = "0x${config.colorScheme.palette.base0E}";
     };
     extraConfig = "
       # Set wallpaper
