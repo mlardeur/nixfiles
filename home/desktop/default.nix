@@ -28,8 +28,15 @@
     uninstallUnmanaged = true;
     packages = [
       { appId = "dev.aunetx.deezer"; origin = "flathub"; }
+      { appId = "app.zen_browser.zen"; origin = "flathub"; }
       { appId = "com.github.tchx84.Flatseal"; origin = "flathub"; }
     ];
+  };
+
+  home.pointerCursor = {
+    name = "Adwaita"; # or "Adwaita", "Capitaine Cursors", etc.
+    package = pkgs.adwaita-icon-theme;  # replace with the correct package
+    gtk.enable = true;              # apply to GTK applications too
   };
 
   # Packages that should be installed to the user profile.
@@ -44,13 +51,12 @@
     # General
     grim # Screenshot
     slurp # Screenshot
+    kooha # Screen recorder
     brave
     firefox-wayland
 
     # Security
     bitwarden
-    protonvpn-cli
-    protonvpn-gui
 
     # Multimedia
     jellyfin-media-player

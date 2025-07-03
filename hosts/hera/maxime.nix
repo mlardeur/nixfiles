@@ -7,6 +7,7 @@
     ../../home/desktop
     ../../home/programs/dev.nix
     ../../home/programs/gaming.nix
+    ../../home/programs/music.nix
     ./kanshi.nix
   ];
 

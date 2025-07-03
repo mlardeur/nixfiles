@@ -56,6 +56,7 @@
     enable = true;
     alsa.enable = true;
     pulse.enable = true;
+    jack.enable = true;
   };
 
   # List other services that must be enabled:
@@ -76,13 +77,14 @@
     ];
     config.commun.default = "*";
   };
-
+    # rtkit is optional but recommended
+  security.rtkit.enable = true;
   security.polkit.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.maxime = {
     isNormalUser = true;
-    extraGroups = [ "networkmanager" "video" "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "networkmanager" "video" "wheel" "dialout"]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
       gh
     ];

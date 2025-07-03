@@ -5,6 +5,9 @@
   home.packages = with pkgs; [
     musescore
     wireplumber
+    helvum
+    bitwig-studio
+    vital
   ];
 
 }

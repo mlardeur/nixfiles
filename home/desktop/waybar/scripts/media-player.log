@@ -16,3 +16,11 @@
 2024-12-17 10:38:12,644 __main__ DEBUG:71 Writing output:  Animals As Leaders - Kascade
 2024-12-17 10:38:12,644 __main__ INFO:55 Starting main loop
 2024-12-17 10:38:28,976 __main__ INFO:21 Received signal to stop, exiting
+2025-07-03 11:36:28,899 __main__ INFO:186 Creating player manager
+2025-07-03 11:36:28,899 __main__ INFO:190 Exclude player firefox,brave,mpd
+2025-07-03 11:36:28,904 __main__ INFO:58 Initialize new player: Feishin
+2025-07-03 11:36:28,906 __main__ DEBUG:114 Metadata changed for player Feishin
+2025-07-03 11:36:28,906 __main__ DEBUG:89 Getting first playing player from 1 players
+2025-07-03 11:36:28,906 __main__ DEBUG:70 Writing output:  Animals as Leaders - Apeirophobia
+2025-07-03 11:36:28,906 __main__ INFO:54 Starting main loop
+2025-07-03 11:36:37,149 __main__ INFO:20 Received signal to stop, exiting

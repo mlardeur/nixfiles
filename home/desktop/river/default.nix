@@ -196,6 +196,8 @@ in
       border-color-focused = "0x${config.colorScheme.palette.base0E}";
     };
     extraConfig = "
+      # Set Keyboard Layout
+      riverctl keyboard-layout -variant \"altgr-intl\" \"us\" &
       # Set wallpaper
       wbg \${XDG_PICTURES_DIR}/Wallpapers/montain-art-ultrawide.jpg &
       ${layoutCommand}

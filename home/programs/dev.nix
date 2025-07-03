@@ -5,7 +5,10 @@
   home.packages = with pkgs; [
     jetbrains-toolbox
     jetbrains.webstorm
+    arduino-ide
+    rpi-imager
     vscode
+    zed-editor
     devbox
     bruno
     (google-cloud-sdk.withExtraComponents [ google-cloud-sdk.components.kubectl ])

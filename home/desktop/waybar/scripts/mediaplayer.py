@@ -1,5 +1,5 @@
 #!/usr/bin/env nix-shell
-#!nix-shell -i python -p playerctl python3 python312Packages.pygobject3
+#!nix-shell -i python -p playerctl python3 python313Packages.pygobject3
 
 
 import gi
@@ -10,7 +10,6 @@ import argparse
 import logging
 import sys
 import signal
-import gi
 import json
 import os
 from typing import List
