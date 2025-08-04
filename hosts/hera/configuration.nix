@@ -84,7 +84,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.maxime = {
     isNormalUser = true;
-    extraGroups = [ "networkmanager" "video" "wheel" "dialout"]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "networkmanager" "video" "wheel" "dialout" "podman"]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
       gh
     ];
@@ -100,7 +100,7 @@
 
     cifs-utils # For mount.cifs
     exfatprogs # Format to exFat
-    wireplumber
+    wireplumber # PipeWire session manager
 
     # Home Manager module
     home-manager
@@ -117,8 +117,20 @@
     ];
   };
 
+  # Enable QEMU and Virtual Machine Manager
   virtualisation.libvirtd.enable = true;
   programs.virt-manager.enable = true;
+
+  # Enable common container config files in /etc/containers
+  virtualisation.containers.enable = true;
+  virtualisation.podman = {
+    enable = true;
+    # Create a `docker` alias for podman, to use it as a drop-in replacement
+    dockerCompat = true;
+    dockerSocket.enable = true;
+    # Required for containers under podman-compose to be able to talk to each other.
+    defaultNetwork.settings.dns_enabled = true;
+  };
 
   mountSambaShares = {
     enable = true;

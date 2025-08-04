@@ -8,6 +8,7 @@
     ../../home/programs/dev.nix
     ../../home/programs/gaming.nix
     ../../home/programs/music.nix
+    ../../home/programs/office.nix
     ./kanshi.nix
   ];
 

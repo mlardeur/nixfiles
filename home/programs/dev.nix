@@ -10,8 +10,15 @@
     vscode
     zed-editor
     devbox
+    podman-tui # Podman TUI for managing containers
+    podman-compose # Podman compose for managing container stacks
     bruno
     (google-cloud-sdk.withExtraComponents [ google-cloud-sdk.components.kubectl ])
+  ];
+
+  # Using Flatpaks
+  services.flatpak.packages = [
+    { appId = "io.podman_desktop.PodmanDesktop"; origin = "flathub"; }
   ];
 
   home = {
