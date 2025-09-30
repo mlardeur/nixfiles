@@ -3,7 +3,7 @@
 {
   programs.rofi = {
     enable = true;
-    package = pkgs.rofi-wayland;
+    package = pkgs.rofi;
     cycle = false;
     terminal = "kitty";
     theme = "Arc-Dark";

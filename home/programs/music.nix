@@ -6,8 +6,12 @@
     musescore
     wireplumber
     helvum
-    bitwig-studio
     vital
   ];
+
+  services.flatpak.packages = [
+    { appId = "com.bitwig.BitwigStudio"; origin = "flathub"; }
+  ];
+
 
 }

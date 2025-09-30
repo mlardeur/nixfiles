@@ -5,6 +5,7 @@
   home.packages = with pkgs; [
     jetbrains-toolbox
     jetbrains.webstorm
+    jetbrains.rust-rover
     arduino-ide
     rpi-imager
     vscode

@@ -29,7 +29,7 @@
     fh.url = "https://flakehub.com/f/DeterminateSystems/fh/*.tar.gz";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, home-manager-stable, nixgl, flatpaks, fh, ... } @ inputs:
+  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, home-manager-stable, nixgl, flatpaks, fh, sops-nix, ... } @ inputs:
     let
       inherit (self) outputs;
       system = "x86_64-linux";
@@ -73,6 +73,7 @@
           inherit pkgs;
           extraSpecialArgs = { inherit inputs outputs; };
           modules = [
+            sops-nix.homeManagerModules.sops
             ./hosts/hera/maxime.nix
           ];
         };
@@ -80,6 +81,7 @@
           inherit pkgs;
           extraSpecialArgs = { inherit inputs outputs; };
           modules = [
+            sops-nix.homeManagerModules.sops
             ./hosts/athena/maxime.nix
           ];
         };
@@ -87,6 +89,7 @@
           pkgs = pkgs-stable;
           extraSpecialArgs = { inherit inputs outputs; };
           modules = [
+            sops-nix.homeManagerModules.sops
             ./hosts/zion
           ];
         };

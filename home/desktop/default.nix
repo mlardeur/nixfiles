@@ -47,6 +47,8 @@
     playerctl
     qdirstat
     gparted
+    mediawriter
+    freefilesync
 
     # General
     grim # Screenshot
@@ -59,7 +61,7 @@
     bitwarden
 
     # Multimedia
-    jellyfin-media-player
+    # jellyfin-media-player temporarily disabled due to build issues
     feishin
   ];
 

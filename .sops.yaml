@@ -1,0 +1,8 @@
+keys:
+  - &hera age18rdmsp0nmh45hehn23fh5p4k8pqptj84kaqtfk4a0w0k7c47npgqrdnayx
+
+creation_rules:
+  - path_regex: secrets/.*\.yaml$
+    key_groups:
+      - age:
+          - *hera
