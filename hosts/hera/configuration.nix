@@ -38,36 +38,52 @@
   };
 
   # Configure keymap in X11
-  services.xserver = {
-    xkb.layout = "us";
-    xkb.options = "eurosign:e,caps:escape";
-  };
+  services = {
+    
+    # Enable the X11 windowing system. Configure keymap in X11
+    xserver = {
+      xkb.layout = "us";
+      xkb.options = "eurosign:e,caps:escape";
+    };
 
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
-  services.avahi = {
-    enable = true;
-    nssmdns4 = true;
-    openFirewall = true;
-  };
+    # Enable CUPS to print documents.
+    printing.enable = true;
+    avahi = {
+      enable = true;
+      nssmdns4 = true;
+      openFirewall = true;
+    };
 
-  # Enable sound.
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    pulse.enable = true;
-    jack.enable = true;
-  };
+    # Enable sound.
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      pulse.enable = true;
+      jack.enable = true;
+    };
 
-  # List other services that must be enabled:
-  # Mount, trash, and other functionalities
-  services.gvfs.enable = true;
-  # Thumbnail support for images
-  services.tumbler.enable = true;
-  # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
-  # Enable Flatpak
-  services.flatpak.enable = true;
+    # Greetd is a minimalistic login manager for Wayland and Linux virtual terminals.
+    greetd = {
+      enable = true;
+      settings = {
+        default_session = {
+          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd river";
+          user = "maxime";
+        };
+      };
+    };
+
+    # List other services that must be enabled:
+    # Mount, trash, and other functionalities
+    gvfs.enable = true;
+    # Thumbnail support for images
+    tumbler.enable = true;
+    # Enable the OpenSSH daemon.
+    openssh.enable = true;
+    # Enable Flatpak
+    flatpak.enable = true;
+
+  };
 
   xdg.portal = {
     enable = true;

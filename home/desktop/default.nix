@@ -48,7 +48,6 @@
     qdirstat
     gparted
     mediawriter
-    freefilesync
 
     # General
     grim # Screenshot
@@ -64,15 +63,6 @@
     # jellyfin-media-player temporarily disabled due to build issues
     feishin
   ];
-
-  # Music and media player 
-  programs = {
-    mpv.enable = true;
-    eww = {
-      enable = true;
-      configDir = ./eww;
-    };
-  };
 
   xdg.portal = {
     enable = true;
@@ -99,16 +89,5 @@
       };
     };
   };
-
-  # MPD Music Player Daemon
-  # services.mpd = {
-  #     enable = true;
-  #     network.listenAddress = "any";
-  #   };
-  # services.mpd-mpris.enable = true;
-
-  # Applets, shown in tray
-  # Networking
-  # services.network-manager-applet.enable = true;
 
 }

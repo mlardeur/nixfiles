@@ -75,7 +75,7 @@ let
     ''
     else if layout == "wideriver" then "
     wideriver \\
-    --layout                       left        \\
+    --layout                       right       \\
     --layout-alt                   wide        \\
     --stack                        even        \\
     --count-master                 1           \\

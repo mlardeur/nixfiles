@@ -19,7 +19,7 @@
   home = {
     username = "maxime";
     homeDirectory = "/home/maxime";
-    stateVersion = "24.11";
+    stateVersion = "25.05";
 
     # Packages that should be installed to the user profile.
     packages = with pkgs; [
@@ -29,14 +29,6 @@
   xdg.userDirs = {
     enable = true;
     music = "/mnt/nebula/music";
-  };
-
-  programs.bash = {
-    initExtra = ''
-      if [[ $TTY == /dev/tty1 ]]; then
-        exec sway
-      fi
-    '';
   };
 
   # Let Home Manager install and manage itself.
