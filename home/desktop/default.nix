@@ -4,12 +4,12 @@
 
   imports = [
     ./kitty.nix
+    ./foot.nix
     ./rofi.nix
     ./dunst.nix
     ./gtk.nix
     ./river
     ./waybar.nix
-    # ./hyprland.nix
   ];
 
   home.pointerCursor = {
