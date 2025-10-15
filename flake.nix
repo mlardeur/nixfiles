@@ -85,6 +85,14 @@
             ./hosts/athena/maxime.nix
           ];
         };
+        "mlardeur@toolbx" = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          extraSpecialArgs = { inherit inputs outputs; };
+          modules = [
+            sops-nix.homeManagerModules.sops
+            ./hosts/toolbx/mlardeur.nix
+          ];
+        };
         "zion@zion" = home-manager-stable.lib.homeManagerConfiguration {
           pkgs = pkgs-stable;
           extraSpecialArgs = { inherit inputs outputs; };

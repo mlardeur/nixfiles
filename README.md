@@ -8,7 +8,7 @@ git clone git@github.com:mlardeur/nixfiles.git
 cd  nixfiles
 """ 
 
-### Nixos setup (Flake + HomeManager)
+### Nixos setup (Flake)
 """
 sudo nixos-rebuild switch --flake .
 """
@@ -34,8 +34,3 @@ home-manager switch --flake .#username@hostname
 """
 
 ## Components by hosts 
-### Core
-Windows Manager | Sway
-Bar | Waybar
-
-### Zion (Debian)
