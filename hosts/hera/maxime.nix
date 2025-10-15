@@ -5,6 +5,7 @@
     inputs.nix-colors.homeManagerModules.default
     ../../home/cli
     ../../home/desktop
+    ../../home/programs/desktop.nix
     ../../home/programs/dev.nix
     ../../home/programs/gaming.nix
     ../../home/programs/music.nix

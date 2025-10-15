@@ -1,7 +1,12 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 
 {
   
+  home.packages = with pkgs; [
+    sops
+    age
+  ];
+
   # Configuration sops
   sops = {
     age.keyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
