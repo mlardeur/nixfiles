@@ -170,7 +170,7 @@ in
           # Screenshot with grim and slurp (zone selection) 
           # TODO fix $(slurp)
           #"$mod1 Print" = "spawn \"grim -g \\\"$(slurp)\\\" $XDG_PICTURES_DIR/Screenshots/$(date +'%s.png')\"";
-          "Print" = "spawn \"grim -g $XDG_PICTURES_DIR/Screenshots/$(date +'%s.png')\"";
+          "Print" = "spawn \"slurp | grim -g $XDG_PICTURES_DIR/Screenshots/$(date +'%s.png')\"";
         } // tagsMap // layoutMap;
       };
       map-pointer = {

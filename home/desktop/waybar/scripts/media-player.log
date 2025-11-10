@@ -24,3 +24,11 @@
 2025-07-03 11:36:28,906 __main__ DEBUG:70 Writing output:  Animals as Leaders - Apeirophobia
 2025-07-03 11:36:28,906 __main__ INFO:54 Starting main loop
 2025-07-03 11:36:37,149 __main__ INFO:20 Received signal to stop, exiting
+2025-10-30 15:15:43,474 __main__ INFO:186 Creating player manager
+2025-10-30 15:15:43,474 __main__ INFO:190 Exclude player firefox,brave,mpd
+2025-10-30 15:15:43,479 __main__ INFO:58 Initialize new player: chromium
+2025-10-30 15:15:43,480 __main__ DEBUG:114 Metadata changed for player chromium
+2025-10-30 15:15:43,480 __main__ DEBUG:89 Getting first playing player from 1 players
+2025-10-30 15:15:43,480 __main__ DEBUG:70 Writing output:  Louis Cole, Kurt Rosenwinkel - When
+2025-10-30 15:15:43,480 __main__ INFO:54 Starting main loop
+2025-10-30 15:17:27,254 __main__ INFO:20 Received signal to stop, exiting
