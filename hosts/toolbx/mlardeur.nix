@@ -3,9 +3,10 @@
 let
   # Helper function to decrypt secrets at build time
   decryptSecret = secretPath: placeholder:
-    pkgs.runCommand "decrypt-${baseNameOf secretPath}" {
-      buildInputs = [ pkgs.sops ];
-    } ''
+    pkgs.runCommand "decrypt-${baseNameOf secretPath}"
+      {
+        buildInputs = [ pkgs.sops ];
+      } ''
       export SOPS_AGE_KEY_FILE=${config.sops.age.keyFile}
       sops -d --extract '${placeholder}' ${secretPath} > $out
     '';
@@ -21,7 +22,7 @@ in
 
   systemd.user.startServices = "sd-switch";
   # Completely disable the systemd service
-  systemd.user.services.sops-nix = lib.mkForce {};
+  systemd.user.services.sops-nix = lib.mkForce { };
 
   sops = {
     # Don't validate signatures in toolbox (causes issues)
@@ -30,7 +31,7 @@ in
 
   home.activation = {
     # Run sops secret activation after home-manager switch
-    activateSopsSecrets = lib.hm.dag.entryAfter ["writeBoundary"] ''
+    activateSopsSecrets = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       $DRY_RUN_CMD echo "🔐 Activating sops secrets manually..."
       
       # Only run if we're not in a dry-run and sops is available
@@ -54,7 +55,7 @@ in
       fi
     '';
   };
-  
+
 
 
   # Home Manger needs a bit of information about you and the 

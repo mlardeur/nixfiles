@@ -42,10 +42,6 @@
     vimAlias = true;
     vimdiffAlias = true;
     defaultEditor = true;
-    plugins = with pkgs.vimPlugins; [
-      LazyVim
-      lazygit-nvim
-    ];
   };
 
   fonts.fontconfig.enable = true;

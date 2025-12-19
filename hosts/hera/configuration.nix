@@ -39,11 +39,12 @@
 
   # Configure keymap in X11
   services = {
-    
+
     # Enable the X11 windowing system. Configure keymap in X11
     xserver = {
       xkb.layout = "us";
       xkb.options = "eurosign:e,caps:escape";
+      videoDrivers = ["nvidia"];
     };
 
     # Enable CUPS to print documents.
@@ -67,7 +68,7 @@
       enable = true;
       settings = {
         default_session = {
-          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd river";
+          command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd river";
           user = "maxime";
         };
       };
@@ -93,14 +94,14 @@
     ];
     config.commun.default = "*";
   };
-    # rtkit is optional but recommended
+  # rtkit is optional but recommended
   security.rtkit.enable = true;
   security.polkit.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.maxime = {
     isNormalUser = true;
-    extraGroups = [ "networkmanager" "video" "wheel" "dialout" "podman"]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "networkmanager" "video" "wheel" "dialout" "podman" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
       gh
     ];

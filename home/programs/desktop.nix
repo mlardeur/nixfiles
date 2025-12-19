@@ -22,10 +22,10 @@
 
     # Web browsers
     brave
-    firefox-wayland
+    firefox
 
     # Security
-    bitwarden
+    bitwarden-desktop
 
     # Multimedia
     # jellyfin-media-player temporarily disabled due to build issues

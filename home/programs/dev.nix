@@ -9,10 +9,10 @@
     arduino-ide
     rpi-imager
     vscode
-    zed-editor
     devbox
     podman-tui # Podman TUI for managing containers
     podman-compose # Podman compose for managing container stacks
+    nvidia-container-toolkit # to use nvidia gpu inside containers
     bruno
     (google-cloud-sdk.withExtraComponents [ google-cloud-sdk.components.kubectl ])
   ];

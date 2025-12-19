@@ -4,7 +4,7 @@
   programs.foot = {
     enable = true;
     settings = {
-        main = {
+      main = {
         term = "xterm-256color";
 
         font = "Fira Code:size=11";

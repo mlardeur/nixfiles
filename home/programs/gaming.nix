@@ -14,6 +14,7 @@
   };
 
   home.packages = with pkgs; [
-    radeontop
+    vulkan-tools
+    nvtopPackages.nvidia
   ];
 }

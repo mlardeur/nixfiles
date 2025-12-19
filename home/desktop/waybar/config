@@ -273,9 +273,9 @@
             "spotify": "",
             "default": "🎜"
         },
-        "on-click": "playerctl -p chromium,tidal-hifi,spotify play-pause",
-        "on-scroll-up": "playerctl -p chromium,tidal-hifi,spotify next",
-        "on-scroll-down": "playerctl -p chromium,tidal-hifi,spotify previous",
+        "on-click": "playerctl -p deezer,tidal-hifi,spotify play-pause",
+        "on-scroll-up": "playerctl -p deezer,tidal-hifi,spotify next",
+        "on-scroll-down": "playerctl -p deezer,tidal-hifi,spotify previous",
         "exec": "$HOME/.config/waybar/scripts/mediaplayer.py --exclude firefox,brave,mpd 2> /dev/null" // Filter player based on name
     }
 }

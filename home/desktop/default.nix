@@ -15,8 +15,8 @@
 
   home.pointerCursor = {
     name = "Adwaita"; # or "Adwaita", "Capitaine Cursors", etc.
-    package = pkgs.adwaita-icon-theme;  # replace with the correct package
-    gtk.enable = true;              # apply to GTK applications too
+    package = pkgs.adwaita-icon-theme; # replace with the correct package
+    gtk.enable = true; # apply to GTK applications too
   };
 
   # Packages that should be installed to the user profile.
@@ -25,6 +25,7 @@
     libnotify
     pavucontrol
     playerctl
+    mpv
 
     # General
     grim # Screenshot
