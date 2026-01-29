@@ -97,6 +97,8 @@
   # rtkit is optional but recommended
   security.rtkit.enable = true;
   security.polkit.enable = true;
+  # Disable the firewall
+  networking.firewall.enable = false;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.maxime = {
@@ -148,6 +150,9 @@
     # Required for containers under podman-compose to be able to talk to each other.
     defaultNetwork.settings.dns_enabled = true;
   };
+  # Enable IP forwarding for container networking
+  boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
+  boot.kernel.sysctl."net.ipv4.conf.all.forwarding" = 1;
 
   mountSambaShares = {
     enable = true;

@@ -7,6 +7,7 @@
     ../../home/desktop
     ../../home/programs/desktop.nix
     ../../home/programs/dev.nix
+    ../../home/programs/game-dev.nix
     ../../home/programs/gaming.nix
     ../../home/programs/music.nix
     ../../home/programs/office.nix

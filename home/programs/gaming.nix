@@ -5,8 +5,9 @@
   services.flatpak.packages = [
     { appId = "com.valvesoftware.Steam"; origin = "flathub"; }
     # { appId = "net.davidotek.pupgui2"; origin = "flathub"; }
-    # { appId = "net.lutris.Lutris"; origin = "flathub"; }
+    { appId = "net.lutris.Lutris"; origin = "flathub"; }
     # { appId = "com.usebottles.bottles"; origin = "flathub"; }
+    # { appId = "info.beyondallreason.bar"; origin = "flathub"; }
   ];
 
   programs.mangohud = {

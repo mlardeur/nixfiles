@@ -106,10 +106,7 @@
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 
-    # Enable NVIDIA container toolkit
+  # Enable NVIDIA container toolkit
   hardware.nvidia-container-toolkit.enable = true;
-  
-  # If you're using rootless podman (which Flatpak likely does)
-  virtualisation.containers.cdi.dynamic.nvidia.enable = true;
 
 }
