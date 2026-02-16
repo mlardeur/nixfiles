@@ -5,10 +5,11 @@
   home.packages = with pkgs; [
     godot
     blender
-    synfigstudio
+    pencil2d
     gimp
     krita
     inkscape
+    aseprite
   ];
 
 }

@@ -37,7 +37,6 @@
     uninstallUnmanaged = true;
     packages = [
       { appId = "dev.aunetx.deezer"; origin = "flathub"; }
-      { appId = "app.zen_browser.zen"; origin = "flathub"; }
       { appId = "com.github.tchx84.Flatseal"; origin = "flathub"; }
     ];
   };
