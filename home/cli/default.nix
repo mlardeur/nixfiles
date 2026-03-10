@@ -58,7 +58,7 @@
     htop # Monitoring
     fd # Find alternative
     eza # ls alternative
-    neofetch
+    fastfetch # System information
     ranger # File Browser
     zstd # Archive tool
     unzip

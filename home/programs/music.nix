@@ -5,7 +5,7 @@
   home.packages = with pkgs; [
     musescore
     wireplumber
-    helvum
+    crosspipe
     vital
   ];
 
