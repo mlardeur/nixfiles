@@ -9,6 +9,7 @@
     ../../home/programs/dev.nix
     ../../home/programs/game-dev.nix
     ../../home/programs/ai.nix
+    ../../home/programs/services.nix
     ../../home/programs/gaming.nix
     ../../home/programs/music.nix
     ../../home/programs/office.nix

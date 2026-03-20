@@ -6,8 +6,11 @@
     jetbrains-toolbox
     jetbrains.webstorm
     jetbrains.rust-rover
+    jetbrains.pycharm
     arduino-ide
     rpi-imager
+    distrobox
+    distrobox-tui
     vscode
     devbox
     podman-tui # Podman TUI for managing containers
