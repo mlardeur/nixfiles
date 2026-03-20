@@ -1,67 +1,62 @@
 { config, pkgs, ... }:
 
 {
-  # Activation du linger pour démarrage automatique sans session
-  systemd.user.startServices = "sd-switch";
+  systemd.user.tmpfiles.rules = [
+    "d %h/.ollama 0755 - - -"
+  ];
   
-  # Variables d'environnement pour CUDA
-  home.sessionVariables = {
-    CUDA_VISIBLE_DEVICES = "0";
-    OLLAMA_HOST = "http://127.0.0.1:11434";
-  };
-  
-  # Activation des services utilisateur Podman
   services.podman = {
     enable = true;
     autoUpdate.enable = true;
-  };
-  
-  # --- DÉFINITION DES CONTENEURS AVEC QUADLET ---
-  virtualisation.quadlet = {
-    # Volumes persistants
-    volumes = {
-      "ollama-models" = {
-        volumeConfig = {
-          label = "ollama-models";
+
+    networks.ai-net = {
+      driver = "bridge";
+    };
+
+    volumes.open-webui = {};
+
+    containers.ollama = {
+      image = "docker.io/ollama/ollama:latest";
+      autoStart = true;
+      autoUpdate = "registry";
+
+      volumes = [ "%h/.ollama:/root/.ollama:z" ];
+      ports = [ "11434:11434" ];
+      network = [ "ai-net" ];
+
+      # Option native — pas besoin d'extraPodmanArgs
+      devices = [ "nvidia.com/gpu=all" ];  # CDI (recommandé)
+
+      environment = {
+        OLLAMA_HOST = "0.0.0.0";
+        NVIDIA_VISIBLE_DEVICES = "all";
+        NVIDIA_DRIVER_CAPABILITIES = "compute,utility";
+      };
+
+      extraConfig = {
+        Quadlet = {
+          DefaultDependencies = "false";
         };
       };
     };
-    
-    # Conteneur Ollama avec GPU
-    containers = {
-      "ollama" = {
-        autoStart = true;
-        serviceConfig = {
-          Restart = "always";
-          RestartSec = "10";
-        };
-        containerConfig = {
-          image = "docker.io/ollama/ollama:latest";
-          volumes = [ "ollama-models:/root/.ollama" ];
-          publishPorts = [ "127.0.0.1:11434:11434" ];
-          environment = {
-            CUDA_VISIBLE_DEVICES = "0";
-            OLLAMA_KEEP_ALIVE = "0";
-          };
-          # Accès GPU NVIDIA
-          devices = [ "nvidia.com/gpu=all" ];
-          # Arguments supplémentaires si nécessaire
-          podmanArgs = [ "--security-opt=label=disable" ];
-        };
+
+    containers.open-webui = {
+      image = "ghcr.io/open-webui/open-webui:main";
+      autoStart = true;
+      autoUpdate = "registry";
+
+      volumes = [ "open-webui:/app/backend/data:z" ];
+      ports = [ "3000:8080" ];
+      network = [ "ai-net" ];
+
+      environment = {
+        OLLAMA_BASE_URL = "http://ollama:11434";
+        WEBUI_AUTH = "false";
       };
-      
-      # Conteneur Open WebUI (interface pour Ollama)
-      "open-webui" = {
-        autoStart = true;
-        containerConfig = {
-          image = "ghcr.io/open-webui/open-webui:main";
-          publishPorts = [ "127.0.0.1:3000:8080" ];
-          volumes = [ "open-webui-data:/app/backend/data" ];
-          environment = {
-            OLLAMA_BASE_URL = "http://ollama:11434";
-          };
-          # Dépendance explicite
-          dependsOn = [ "ollama.service" ];
+
+      extraConfig = {
+        Quadlet = {
+          DefaultDependencies = "false";
         };
       };
     };
