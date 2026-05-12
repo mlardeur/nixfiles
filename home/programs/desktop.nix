@@ -26,6 +26,7 @@
 
     # Security
     bitwarden-desktop
+    lxqt.lxqt-policykit
 
     # Multimedia
     # jellyfin-media-player temporarily disabled due to build issues

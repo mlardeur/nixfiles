@@ -184,6 +184,7 @@ in
       focus-follows-cursor = "normal";
       spawn = [
         "waybar"
+        "lxqt-policykit-agent"
       ];
       spawn-tagmask = toString allButMiscTag;
       rule-add = [

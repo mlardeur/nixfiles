@@ -11,6 +11,7 @@
     ./gtk.nix
     ./river
     ./waybar.nix
+    ./eww
   ];
 
   home.pointerCursor = {

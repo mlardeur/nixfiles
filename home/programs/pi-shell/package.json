@@ -1,0 +1,8 @@
+{
+  "name": "nixfiles-pi",
+  "version": "1.0.0",
+  "packageManager": "bun",
+  "devDependencies": {
+    "@earendil-works/pi-coding-agent": "latest"
+  }
+}

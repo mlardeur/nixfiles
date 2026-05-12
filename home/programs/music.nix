@@ -7,6 +7,7 @@
     wireplumber
     crosspipe
     vital
+    vcv-rack
   ];
 
   services.flatpak.packages = [

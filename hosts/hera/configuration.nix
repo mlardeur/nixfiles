@@ -83,6 +83,8 @@
     openssh.enable = true;
     # Enable Flatpak
     flatpak.enable = true;
+    # Tailscale VPN client
+    tailscale.enable = true;
 
   };
 
@@ -92,7 +94,7 @@
       xdg-desktop-portal-wlr
       xdg-desktop-portal-gtk
     ];
-    config.commun.default = "*";
+    config.common.default = "*";
   };
   # rtkit is optional but recommended
   security.rtkit.enable = true;
@@ -120,6 +122,7 @@
     cifs-utils # For mount.cifs
     exfatprogs # Format to exFat
     wireplumber # PipeWire session manager
+    tailscale # VPN client
 
     # Home Manager module
     home-manager
