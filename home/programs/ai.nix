@@ -3,10 +3,8 @@
 
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
-    #ollama
-    #ollama
-    #openclaw
-    #claude-code
+    opencode
+    opencode-desktop
   ];
 
 }

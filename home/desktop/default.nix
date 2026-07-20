@@ -15,6 +15,7 @@
   ];
 
   home.pointerCursor = {
+    enable = true;
     name = "Adwaita"; # or "Adwaita", "Capitaine Cursors", etc.
     package = pkgs.adwaita-icon-theme; # replace with the correct package
     gtk.enable = true; # apply to GTK applications too
@@ -27,6 +28,9 @@
     pavucontrol
     playerctl
     mpv
+
+    # Windows emulation
+    wine-wayland
 
     # General
     grim # Screenshot

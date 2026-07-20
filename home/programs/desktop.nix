@@ -11,7 +11,7 @@
 
   # Allow insecure packages
   nixpkgs.config.permittedInsecurePackages = [
-    "electron-31.7.7"
+    "electron-39.8.10"
   ];
 
   home.packages = with pkgs; [

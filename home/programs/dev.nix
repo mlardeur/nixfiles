@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
 
   # Packages that should be installed to the user profile.
@@ -30,7 +30,5 @@
       pi-shell = "nix develop ~/dev/pi-shell";
     };
   };
-
-  home.file."dev/pi-shell".source = ./pi-shell;
 
 }

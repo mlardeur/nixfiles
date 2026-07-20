@@ -13,6 +13,7 @@
     ../../home/programs/gaming.nix
     ../../home/programs/music.nix
     ../../home/programs/office.nix
+    ../../home/programs/videos.nix
     ./kanshi.nix
   ];
 
@@ -23,7 +24,7 @@
   home = {
     username = "maxime";
     homeDirectory = "/home/maxime";
-    stateVersion = "25.05";
+    stateVersion = "26.05";
 
     # Packages that should be installed to the user profile.
     packages = with pkgs; [
@@ -32,7 +33,8 @@
 
   xdg.userDirs = {
     enable = true;
-    music = "/mnt/nebula/music";
+    music = "/mnt/nebula/media/Music";
+    setSessionVariables = true;
   };
 
   # Let Home Manager install and manage itself.

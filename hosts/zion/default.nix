@@ -30,7 +30,8 @@
 
   xdg.userDirs = {
     enable = true;
-    music = "/mnt/media/music";
+    music = "/mnt/nebula/media/Music";
+    setSessionVariables = true;
   };
 
   programs.home-manager.enable = true;

@@ -18,5 +18,9 @@
       package = pkgs.arc-icon-theme;
       name = "Arc";
     };
+    gtk4.theme = {
+      package = pkgs.arc-theme;
+      name = "Arc-Dark";
+    };
   };
 }

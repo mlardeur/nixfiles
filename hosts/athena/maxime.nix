@@ -27,7 +27,8 @@
 
   xdg.userDirs = {
     enable = true;
-    music = "/mnt/zion/music";
+    music = "/mnt/nebula/media/Music";
+    setSessionVariables = true;
   };
 
   # Let Home Manager install and manage itself.

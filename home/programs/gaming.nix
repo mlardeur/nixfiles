@@ -17,5 +17,6 @@
   home.packages = with pkgs; [
     vulkan-tools
     nvtopPackages.nvidia
+    prismlauncher
   ];
 }

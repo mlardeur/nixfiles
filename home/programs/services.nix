@@ -17,8 +17,6 @@
       driver = "bridge";
     };
 
-    volumes.open-webui = {};
-
     volumes.immich-model-cache = {};
 
     containers.ollama = {
@@ -44,32 +42,6 @@
         "--dns=8.8.8.8" 
       ];
 
-      extraConfig = {
-        Quadlet = {
-          DefaultDependencies = "false";
-        };
-      };
-    };
-
-    containers.open-webui = {
-      image = "ghcr.io/open-webui/open-webui:main";
-      autoStart = false;
-      autoUpdate = "registry";
-
-      volumes = [ "open-webui:/app/backend/data:z" ];
-      ports = [ "3000:8080" ];
-      network = [ "ai-net" ];
-
-      environment = {
-        OLLAMA_BASE_URL = "http://ollama:11434";
-        WEBUI_AUTH = "false";
-      };
-
-      extraPodmanArgs = [ 
-        "--dns=1.1.1.1"
-        "--dns=8.8.8.8" 
-      ];
-      
       extraConfig = {
         Quadlet = {
           DefaultDependencies = "false";

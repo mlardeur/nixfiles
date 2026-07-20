@@ -8,6 +8,8 @@
     crosspipe
     vital
     vcv-rack
+    bitwig-studio
+    yabridge
   ];
 
   services.flatpak.packages = [
