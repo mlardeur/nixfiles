@@ -49,11 +49,11 @@
       options = [ "fmask=0022" "dmask=0022" ];
     };
 
-  fileSystems."/shared" = {
-    device = "/dev/disk/by-uuid/fc4ffb58-f8ab-4702-8c39-c10159b45581";
-    fsType = "btrfs";
-    options = [ "compress=zstd" ]; # Add other options as needed
-  };
+ # fileSystems."/shared" = {
+ #   device = "/dev/disk/by-uuid/fc4ffb58-f8ab-4702-8c39-c10159b45581";
+ #   fsType = "btrfs";
+ #   options = [ "compress=zstd" ]; # Add other options as needed
+ # };
 
   fileSystems."/swap" = {
     device = "/dev/disk/by-uuid/9eae6b25-4ccb-4c91-8733-d21ab5423ca0";

@@ -39,6 +39,7 @@
     packages = [
       { appId = "dev.aunetx.deezer"; origin = "flathub"; }
       { appId = "com.github.tchx84.Flatseal"; origin = "flathub"; }
+      { appId = "fr.ffhandball.fdme"; origin = "flathub"; }
     ];
   };
 

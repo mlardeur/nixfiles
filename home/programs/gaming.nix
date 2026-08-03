@@ -4,8 +4,9 @@
   # Using Flatpaks
   services.flatpak.packages = [
     { appId = "com.valvesoftware.Steam"; origin = "flathub"; }
+    { appId = "com.heroicgameslauncher.hgl"; origin = "flathub"; }
     # { appId = "net.davidotek.pupgui2"; origin = "flathub"; }
-    { appId = "net.lutris.Lutris"; origin = "flathub"; }
+    # { appId = "net.lutris.Lutris"; origin = "flathub"; }
     # { appId = "com.usebottles.bottles"; origin = "flathub"; }
     # { appId = "info.beyondallreason.bar"; origin = "flathub"; }
   ];
@@ -17,6 +18,7 @@
   home.packages = with pkgs; [
     vulkan-tools
     nvtopPackages.nvidia
+    lutris
     prismlauncher
   ];
 }

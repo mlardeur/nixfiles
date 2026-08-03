@@ -1,0 +1,87 @@
+(defpoll CPU_USAGE :interval "5s" "./scripts/cpu_usage")
+(defpoll MEM_USAGE :interval "10s" "./scripts/mem_usage")
+(defpoll DISK_USAGE :interval "30s" "./scripts/disk_lag")
+(defpoll CPU_TEMP :interval "5s" "./scripts/cpu_temp")
+
+(defvar wifi_rev false)
+
+(defvar eww "$HOME/.nix-profile/bin/eww -c $HOME/.config/eww/bar")
+
+(defpoll COL_WLAN :interval "1m" "./scripts/wifi --COL")
+(defpoll ESSID_WLAN :interval "1m" "./scripts/wifi --ESSID")
+(defpoll WLAN_ICON :interval "1m" "./scripts/wifi --ICON")
+
+(defwidget bar_layout []
+  (box :class "bar_class"
+    :orientation "h"
+    (left)
+    (center)
+    (right)))
+
+(defwindow bar
+  :monitor 0
+  :geometry (geometry :x "0%"
+    :y "9px"
+    :width "98%"
+    :height "30px"
+  :anchor "top center")
+  :stacking "fg"
+  :windowtype "dock"
+  (bar_layout))
+
+(defwidget left []
+  (box :orientation "h"
+    :space-evenly false
+    :halign "end"
+    :class "left_modules"
+    (wifi)
+    (systemtray)))
+
+(defwidget center []
+  (box :calign "center"
+    :class "center_modules"
+    (time)))
+
+(defwidget right []
+  (box :orientation "h"
+    :space-evenly false
+    :halign "start"
+    :class "right_modules"
+    (cpu)
+    (mem)
+    (disk)
+    (temp)))
+
+(defwidget time []
+  (label :text {formattime(EWW_TIME, "%H:%M")}))
+
+(defwidget cpu []
+  (label :class "module-cpu" :text "CPU: ${EWW_CPU_USAGE}%"))
+
+(defwidget mem []
+  (label :class "module-mem" :text "MEM: ${EWW_MEM_USAGE}%"))
+
+(defwidget disk []
+  (label :class "module-disk" :text "DISK: ${EWW_DISK_USAGE}%"))
+
+(defwidget temp []
+  (label :class "module-temp" :text "TEMP: ${EWW_CPU_TEMP}°C"))
+
+(defwidget wifi []
+  (eventbox :onhover "${eww} update wifi_rel=true"
+    :onhoverlost "${eww} update wifi_rel=false"
+    (box :vexpand "false" :hexpand "false" :space-evenly "false"
+      (button :class "module-wifi" :onclick "nmtui" :wrap "false" :limit-width 12 :style "color: ${COL_WLAN};" WLAN_ICON)
+      (revealer :transition "slideright"
+        :reveal wifi_rev
+        :duration "350ms"
+        (label    :class "module_essid"
+          :text ESSID_WLAN
+          :orientation "h"
+        )))))
+
+(defwidget systemtray []
+  (box :orientation "h"
+    :halign "start"
+    :class "system_tray"
+    (systray)))
