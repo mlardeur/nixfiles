@@ -12,6 +12,7 @@
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
+  boot.supportedFilesystems = [ "ntfs" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
@@ -49,11 +50,11 @@
       options = [ "fmask=0022" "dmask=0022" ];
     };
 
- # fileSystems."/shared" = {
- #   device = "/dev/disk/by-uuid/fc4ffb58-f8ab-4702-8c39-c10159b45581";
- #   fsType = "btrfs";
- #   options = [ "compress=zstd" ]; # Add other options as needed
- # };
+  fileSystems."/shared" = {
+    device = "/dev/disk/by-uuid/EE98BA5698BA1D51";
+    fsType = "ntfs3";
+    options = [ "rw" "uid=1001" "gid=100" "nofail" ]; # Add other options as needed
+  };
 
   fileSystems."/swap" = {
     device = "/dev/disk/by-uuid/9eae6b25-4ccb-4c91-8733-d21ab5423ca0";
