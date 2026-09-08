@@ -7,4 +7,8 @@
     onlyoffice-desktopeditors
   ];
 
+  services.flatpak.packages = [
+    { appId = "com.collaboraoffice.Office"; origin = "flathub"; }
+  ];
+
 }

@@ -1,5 +1,5 @@
 #!/usr/bin/env nix-shell
-#!nix-shell -i python -p playerctl python3 python313Packages.pygobject3 python313Packages.dbus-python
+#!nix-shell -i python -p playerctl python3 python314Packages.pygobject3 python314Packages.dbus-python
 
 
 import gi

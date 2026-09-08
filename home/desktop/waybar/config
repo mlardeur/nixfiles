@@ -259,7 +259,7 @@
 
     "custom/power": {
         "format":"⏻",
-        "on-click": "exec ~/.config/waybar/scripts/power-menu.sh",
+        "on-click": "exec quickshell ipc call powermenu toggle",
         "tooltip": false,
     },
 

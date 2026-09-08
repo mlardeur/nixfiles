@@ -7,6 +7,7 @@
     ./kitty.nix
     ./foot.nix
     ./rofi.nix
+    ./quickshell.nix
     ./dunst.nix
     ./gtk.nix
     ./river

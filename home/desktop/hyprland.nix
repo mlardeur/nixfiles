@@ -8,7 +8,10 @@
     settings = {
       "$mod" = "SUPER";
 
-      exec-once = "waybar";
+      exec-once = [
+        "waybar"
+        "quickshell"
+      ];
 
       general = {
         # See https://wiki.hyprland.org/Configuring/Variables/ for more
@@ -16,10 +19,17 @@
         gaps_out = 10;
         border_size = 2;
 
-        layout = "dwindle";
+        layout = "master";
+        no_gaps_when_only = 1;
 
         # Please see https://wiki.hyprland.org/Configuring/Tearing/ before you turn this on
         # allow_tearing = false;
+      };
+
+      master = {
+        mfact = 0.50;
+        orientation = "right";
+        always_center_master = false;
       };
 
       decoration = {
@@ -54,13 +64,20 @@
       bind = [
         "$mod, RETURN, exec, kitty"
         "$mod, C, killactive,"
-        "$mod SHIFT, E, exit,"
+        "$mod SHIFT, E, exec, quickshell ipc call powermenu toggle"
         "$mod, N, exec, thunar"
         "$mod SHIFT, SPACE, togglefloating,"
         "$mod SHIFT, F, fullscreen,"
-        "$mod, D, exec, wofi --show drun"
-        "$mod, P, pseudo,"
-        "$mod, J, togglesplit,"
+        "$mod, D, exec, quickshell ipc call launcher toggle"
+
+        # Master layout controls (match river wideriver)
+        "$mod, H, layoutmsg, mfact -0.05"
+        "$mod, L, layoutmsg, mfact +0.05"
+        "$mod SHIFT, H, layoutmsg, addmaster"
+        "$mod SHIFT, L, layoutmsg, removemaster"
+        "$mod, J, layoutmsg, cyclenext"
+        "$mod, K, layoutmsg, cycleprev"
+        "$mod SHIFT, J, layoutmsg, swapwithmaster"
 
         # Move focus with mod + arrow keys
         "$mod, left, movefocus, l"
@@ -68,11 +85,23 @@
         "$mod, up, movefocus, u"
         "$mod, down, movefocus, d"
 
-        # Move window to a direction or monitor with mod + arrow keys
-        "$mod SHIFT, left, movewindow, l"
-        "$mod SHIFT, right, movewindow, r"
-        "$mod SHIFT, up, movewindow, u"
-        "$mod SHIFT, down, movewindow, d"
+        # Change master orientation with mod + shift + arrow keys (matches river)
+        "$mod SHIFT, left, layoutmsg, orientationleft"
+        "$mod SHIFT, right, layoutmsg, orientationright"
+        "$mod SHIFT, up, layoutmsg, orientationtop"
+        "$mod SHIFT, down, layoutmsg, orientationbottom"
+
+        # Move window with mod + alt + hjkl (matches river)
+        "$mod ALT, H, movewindow, l"
+        "$mod ALT, J, movewindow, d"
+        "$mod ALT, K, movewindow, u"
+        "$mod ALT, L, movewindow, r"
+
+        # Resize window with mod + alt + shift + hjkl (matches river)
+        "$mod ALT SHIFT, H, resizeactive, -20 0"
+        "$mod ALT SHIFT, J, resizeactive, 0 20"
+        "$mod ALT SHIFT, K, resizeactive, 0 -20"
+        "$mod ALT SHIFT, L, resizeactive, 20 0"
 
         # Switch workspaces with mod + [0-9]
         "$mod, 1, workspace, 1"

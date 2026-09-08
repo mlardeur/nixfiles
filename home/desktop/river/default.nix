@@ -117,7 +117,6 @@ in
           "$mod1+Shift Return" = "spawn kitty";
           "$mod1 Q" = "close";
           "$mod1 C" = "close";
-          "$mod1+Shift E" = "exit";
           # $mod1+J and $mod1+K to focus the next/previous view in the layout stack
           "$mod1 J" = "focus-view next";
           "$mod1 K" = "focus-view previous";
@@ -156,8 +155,8 @@ in
           "$mod1 S" = "toggle-view-tags ${toString stickyTag}";
           # App specific Keymap use spawn
           "$mod1 N" = "spawn thunar";
-          # Drun with rofi
-          "$mod1 D" = "spawn 'rofi -show drun -show-icons'";
+          # App launcher (quickshell)
+          "$mod1 D" = "spawn quickshell ipc call launcher toggle";
           # Control pulse audio volume with pactl)
           "None XF86AudioRaiseVolume" = "spawn 'wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%+ -l 1.0'";
           "None XF86AudioLowerVolume" = "spawn 'wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-'";
@@ -185,6 +184,7 @@ in
       spawn = [
         "waybar"
         "lxqt-policykit-agent"
+        "quickshell"
       ];
       spawn-tagmask = toString allButMiscTag;
       rule-add = [
