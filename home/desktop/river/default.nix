@@ -156,7 +156,7 @@ in
           # App specific Keymap use spawn
           "$mod1 N" = "spawn thunar";
           # App launcher (quickshell)
-          "$mod1 D" = "spawn quickshell ipc call launcher toggle";
+          "$mod1 D" = "spawn 'quickshell ipc call launcher toggle'";
           # Control pulse audio volume with pactl)
           "None XF86AudioRaiseVolume" = "spawn 'wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%+ -l 1.0'";
           "None XF86AudioLowerVolume" = "spawn 'wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-'";
@@ -182,7 +182,6 @@ in
       };
       focus-follows-cursor = "normal";
       spawn = [
-        "waybar"
         "lxqt-policykit-agent"
         "quickshell"
       ];

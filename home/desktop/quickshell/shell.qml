@@ -2,6 +2,7 @@ import Quickshell
 import Quickshell.Io
 
 Scope {
+    Bar { id: bar }
     Launcher { id: launcher }
     PowerMenu { id: powermenu }
 
