@@ -4,9 +4,13 @@ import Quickshell.Wayland
 import Quickshell.Services.SystemTray
 import QtQuick
 import QtQuick.Layouts
+import QtQuick.Shapes
 
 PanelWindow {
     id: bar
+
+    property var modelData
+    screen: modelData
 
     anchors {
         top: true
@@ -15,8 +19,23 @@ PanelWindow {
     }
 
     exclusiveZone: 30
-    color: Qt.alpha(Theme.surface, 0.85)
+    color: "transparent"
     implicitHeight: 30
+
+    // Bar geometry: folder-tab ("interleaf") silhouette — wide top edge
+    // flush with the screen, tight concave shoulder flares (~1:3 slope
+    // like the reference photo), narrower body with rounded bottom
+    // corners.
+    readonly property real flareW: 70
+    readonly property real botX: width * 0.20
+    readonly property real botW: width * 0.60
+    readonly property real topX: botX - flareW
+    readonly property real topW: botW + 2 * flareW
+    readonly property real flareY: 16
+    readonly property real flareKX: 0.5523 * flareW
+    readonly property real flareKY: 0.5523 * flareY
+    readonly property real cornerR: 12
+    readonly property real cornerK: 0.5523 * cornerR
 
     // 9 river tags; labels mirror waybar's river/tags.tag-labels.
     readonly property var tagLabels: [
@@ -62,6 +81,11 @@ PanelWindow {
     }
 
     function parseNetwork(line) {
+        if (line === "none") {
+            bar.networkText = "Disconnected"
+            bar.networkGlyph = "\uF071"
+            return
+        }
         var parts = line.split(":")
         if (parts.length < 3 || parts[1] !== "connected") return
         var type = parts[0]
@@ -98,12 +122,9 @@ PanelWindow {
         interval: 5000
         running: true
         repeat: true
-        onTriggered: {
-            bar.networkText = "Disconnected"
-            bar.networkGlyph = "\uF071"
-            netProc.exec(["sh", "-c",
-                "nmcli -t -f TYPE,STATE,CONNECTION device status | grep ':connected:' | head -1"])
-        }
+        triggeredOnStart: true
+        onTriggered: netProc.exec(["sh", "-c",
+            'out=$(nmcli -t -f TYPE,STATE,CONNECTION device status | grep ":connected:" | head -1); if [ -n "$out" ]; then echo "$out"; else echo none; fi'])
     }
 
     Process {
@@ -120,10 +141,69 @@ PanelWindow {
             "cpu1=$(awk '/^cpu /{i=$5+$6;t=0;for(j=2;j<=NF;j++)t+=$j;print i,t}' /proc/stat); sleep 0.4; cpu2=$(awk '/^cpu /{i=$5+$6;t=0;for(j=2;j<=NF;j++)t+=$j;print i,t}' /proc/stat); set -- $cpu1 $cpu2; di=$(($3-$1)); dt=$(($4-$2)); if [ $dt -gt 0 ]; then c=$(( (100*(dt-di))/dt )); else c=0; fi; m=$(awk '/MemTotal/{t=$2}/MemAvailable/{a=$2}END{if(t>0)print int((100*(t-a))/t);else print 0}' /proc/meminfo); d=$(df -P / | awk 'NR==2{print substr($5,1,length($5)-1)}'); echo cpu $c; echo mem $m; echo disk $d"])
     }
 
+    Shape {
+        anchors.fill: parent
+
+        ShapePath {
+            fillColor: Qt.alpha(Theme.surface, 0.85)
+            strokeColor: "transparent"
+            startX: bar.topX
+            startY: 0
+            PathLine {
+                x: bar.topX + bar.topW
+                y: 0
+            }
+            PathCubic {
+                x: bar.botX + bar.botW
+                y: bar.flareY
+                control1X: bar.topX + bar.topW - bar.flareKX
+                control1Y: 0
+                control2X: bar.botX + bar.botW
+                control2Y: bar.flareY - bar.flareKY
+            }
+            PathLine {
+                x: bar.botX + bar.botW
+                y: bar.height - bar.cornerR
+            }
+            PathCubic {
+                x: bar.botX + bar.botW - bar.cornerR
+                y: bar.height
+                control1X: bar.botX + bar.botW
+                control1Y: bar.height - bar.cornerR + bar.cornerK
+                control2X: bar.botX + bar.botW - bar.cornerR + bar.cornerK
+                control2Y: bar.height
+            }
+            PathLine {
+                x: bar.botX + bar.cornerR
+                y: bar.height
+            }
+            PathCubic {
+                x: bar.botX
+                y: bar.height - bar.cornerR
+                control1X: bar.botX + bar.cornerR - bar.cornerK
+                control1Y: bar.height
+                control2X: bar.botX
+                control2Y: bar.height - bar.cornerR + bar.cornerK
+            }
+            PathLine {
+                x: bar.botX
+                y: bar.flareY
+            }
+            PathCubic {
+                x: bar.topX
+                y: 0
+                control1X: bar.botX
+                control1Y: bar.flareY - bar.flareKY
+                control2X: bar.topX + bar.flareKX
+                control2Y: 0
+            }
+        }
+    }
+
     RowLayout {
         anchors.fill: parent
-        anchors.leftMargin: 12
-        anchors.rightMargin: 12
+        anchors.leftMargin: bar.botX + 12
+        anchors.rightMargin: bar.botX + 12
         spacing: 12
 
         Row {
@@ -144,11 +224,26 @@ PanelWindow {
 
         Item { Layout.fillWidth: true }
 
-        Text {
+        Item {
+            width: clockText.width
+            height: 16
             Layout.alignment: Qt.AlignVCenter
-            text: bar.timeText
-            color: Theme.text
-            font.pixelSize: 14
+
+            Text {
+                id: clockText
+                anchors.verticalCenter: parent.verticalCenter
+                text: bar.timeText
+                color: Theme.text
+                font.pixelSize: 14
+            }
+
+            MouseArea {
+                anchors.fill: parent
+                cursorShape: Qt.PointingHandCursor
+                onClicked: Quickshell.execDetached({
+                    command: ["quickshell", "ipc", "call", "calendar", "toggle"]
+                })
+            }
         }
 
         Item { Layout.fillWidth: true }

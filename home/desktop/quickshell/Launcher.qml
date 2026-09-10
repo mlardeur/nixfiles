@@ -8,6 +8,9 @@ import QtQuick.Layouts
 PanelWindow {
     id: root
 
+    property var modelData
+    screen: modelData
+
     anchors {
         top: true
         left: true

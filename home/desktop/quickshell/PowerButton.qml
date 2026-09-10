@@ -5,7 +5,7 @@ Item {
     id: root
 
     property string label: ""
-    property string icon: ""
+    property string glyph: ""
     signal triggered()
 
     width: 84
@@ -15,15 +15,26 @@ Item {
         id: bg
         anchors.fill: parent
         radius: Theme.radius
-        color: mouse.containsMouse ? Theme.surfaceHover : Theme.background
+        color: mouse.containsMouse ? Theme.surfaceHover : Qt.alpha(Theme.background, 0.5)
         border.width: 1
-        border.color: Theme.border
+        border.color: mouse.containsMouse ? Theme.accent : Theme.border
+        Behavior on border.color {
+            ColorAnimation {
+                duration: 120
+            }
+        }
+        Behavior on color {
+            ColorAnimation {
+                duration: 120
+            }
+        }
     }
 
     MouseArea {
         id: mouse
         anchors.fill: parent
         hoverEnabled: true
+        cursorShape: Qt.PointingHandCursor
         onClicked: root.triggered()
     }
 
@@ -31,11 +42,17 @@ Item {
         anchors.centerIn: parent
         spacing: 8
 
-        Image {
+        Text {
             anchors.horizontalCenter: parent.horizontalCenter
-            width: 32
-            height: 32
-            source: root.icon !== "" ? Quickshell.iconPath(root.icon, true) : ""
+            text: root.glyph
+            font.family: "FiraCode Nerd Font"
+            font.pixelSize: 28
+            color: mouse.containsMouse ? Theme.accent : Theme.text
+            Behavior on color {
+                ColorAnimation {
+                    duration: 120
+                }
+            }
         }
 
         Text {

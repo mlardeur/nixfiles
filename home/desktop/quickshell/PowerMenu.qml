@@ -7,36 +7,67 @@ import QtQuick.Layouts
 PanelWindow {
     id: root
 
+    property var modelData
+    screen: modelData
+
     anchors {
         top: true
         left: true
         right: true
-    }
-
-    margins {
-        top: Math.max((screen.height - implicitHeight) / 2, 0)
-        left: Math.max((screen.width - 720) / 2, Theme.radius)
-        right: Math.max((screen.width - 720) / 2, Theme.radius)
+        bottom: true
     }
 
     aboveWindows: true
     exclusiveZone: 0
     focusable: true
     visible: false
-    color: "transparent"
-    implicitHeight: 130
+    color: Qt.alpha("#000000", 0.5)
 
     function toggle() {
-        visible = !visible;
+        if (visible) {
+            close();
+        } else {
+            visible = true;
+            panel.forceActiveFocus();
+        }
+    }
+
+    function close() {
+        visible = false;
+    }
+
+    MouseArea {
+        anchors.fill: parent
+        onClicked: root.close()
     }
 
     Rectangle {
-        anchors.fill: parent
+        id: panel
+        anchors.centerIn: parent
+        width: Math.min(720, parent.width - 2 * Theme.radius)
+        height: 130
         radius: Theme.radius
-        color: Theme.surface
+        color: Qt.alpha(Theme.surface, 0.75)
+        border.width: 1
+        border.color: Qt.alpha(Theme.border, 0.9)
 
         focus: true
-        Keys.onEscapePressed: root.visible = false
+        Keys.onEscapePressed: root.close()
+
+        MouseArea {
+            anchors.fill: parent
+        }
+
+        Rectangle {
+            anchors {
+                top: parent.top
+                left: parent.left
+                right: parent.right
+                margins: Theme.radius
+            }
+            height: 1
+            color: Qt.alpha(Theme.text, 0.08)
+        }
 
         RowLayout {
             anchors.centerIn: parent
@@ -44,40 +75,58 @@ PanelWindow {
 
             PowerButton {
                 label: "Lock"
-                icon: "system-lock-screen"
-                onTriggered: Quickshell.execDetached({ command: ["loginctl", "lock-session"] })
+                glyph: "\uF023"
+                onTriggered: {
+                    root.close();
+                    Quickshell.execDetached({ command: ["loginctl", "lock-session"] });
+                }
             }
 
             PowerButton {
                 label: "Suspend"
-                icon: "system-suspend"
-                onTriggered: Quickshell.execDetached({ command: ["systemctl", "suspend"] })
+                glyph: "\uF186"
+                onTriggered: {
+                    root.close();
+                    Quickshell.execDetached({ command: ["systemctl", "suspend"] });
+                }
             }
 
             PowerButton {
                 label: "Hibernate"
-                icon: "system-suspend-hibernate"
-                onTriggered: Quickshell.execDetached({ command: ["systemctl", "hibernate"] })
+                glyph: "\uF1DC"
+                onTriggered: {
+                    root.close();
+                    Quickshell.execDetached({ command: ["systemctl", "hibernate"] });
+                }
             }
 
             PowerButton {
                 label: "Reboot"
-                icon: "system-reboot"
-                onTriggered: Quickshell.execDetached({ command: ["systemctl", "reboot"] })
+                glyph: "\uF021"
+                onTriggered: {
+                    root.close();
+                    Quickshell.execDetached({ command: ["systemctl", "reboot"] });
+                }
             }
 
             PowerButton {
                 label: "Shutdown"
-                icon: "system-shutdown"
-                onTriggered: Quickshell.execDetached({ command: ["systemctl", "poweroff"] })
+                glyph: "\uF011"
+                onTriggered: {
+                    root.close();
+                    Quickshell.execDetached({ command: ["systemctl", "poweroff"] });
+                }
             }
 
             PowerButton {
                 label: "Logout"
-                icon: "system-log-out"
-                onTriggered: Quickshell.execDetached({
-                    command: ["loginctl", "terminate-session", Quickshell.env("XDG_SESSION_ID")]
-                })
+                glyph: "\uF08B"
+                onTriggered: {
+                    root.close();
+                    Quickshell.execDetached({
+                        command: ["loginctl", "terminate-session", Quickshell.env("XDG_SESSION_ID")]
+                    });
+                }
             }
         }
     }
