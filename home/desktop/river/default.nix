@@ -98,7 +98,6 @@ let
 in
 {
   home.packages = with pkgs; [
-    wbg
     kanshi
     wideriver
   ];
@@ -156,7 +155,9 @@ in
           # App specific Keymap use spawn
           "$mod1 N" = "spawn thunar";
           # App launcher (quickshell)
-          "$mod1 D" = "spawn 'quickshell ipc call launcher toggle'";
+          "$mod1 D" = "spawn 'noctalia msg panel-toggle launcher'";
+          # Power menu (noctalia session panel)
+          "$mod1+Shift Escape" = "spawn 'noctalia msg panel-toggle session'";
           # Control pulse audio volume with pactl)
           "None XF86AudioRaiseVolume" = "spawn 'wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%+ -l 1.0'";
           "None XF86AudioLowerVolume" = "spawn 'wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-'";
@@ -183,7 +184,7 @@ in
       focus-follows-cursor = "normal";
       spawn = [
         "lxqt-policykit-agent"
-        "quickshell"
+        "noctalia"
       ];
       spawn-tagmask = toString allButMiscTag;
       rule-add = [
@@ -198,8 +199,6 @@ in
     extraConfig = "
       # Set Keyboard Layout
       riverctl keyboard-layout -variant \"altgr-intl\" \"us\" &
-      # Set wallpaper
-      wbg \${XDG_PICTURES_DIR}/Wallpapers/montain-art-ultrawide.jpg &
       ${layoutCommand}
     ";
 

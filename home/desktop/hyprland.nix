@@ -4,12 +4,10 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
-    enableNvidiaPatches = true;
     settings = {
       "$mod" = "SUPER";
 
       exec-once = [
-        "waybar"
         "quickshell"
       ];
 

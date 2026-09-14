@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running `nixos-help`).
 
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   nixpkgs.config.allowUnfree = true;
@@ -64,6 +64,17 @@
       jack.enable = true;
     };
 
+    # Greetd is a minimalistic login manager for Wayland and Linux virtual terminals.
+    greetd = {
+      enable = true;
+      settings = {
+        default_session = {
+          command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd river --sessions /home/maxime/.nix-profile/share/wayland-sessions";
+          user = "maxime";
+        };
+      };
+    };
+
     # List services that you want to enable:
     gvfs.enable = true; # Mount, trash, and other functionalities
     tumbler.enable = true; # Thumbnail support for images
@@ -122,6 +133,17 @@
   };
 
   mountSambaShares.enable = true;
+
+  # Home Manager installs the umbriel binary + wayland session in the user
+  # profile; start-umbriel launches it through umbriel.service, so systemd
+  # must know the package's user units (systemd.packages also feeds
+  # /etc/systemd/user). restartIfChanged keeps rebuilds from killing a
+  # running session. Everything else stays in home/desktop/umbriel.nix.
+  systemd.packages = [ inputs.umbriel.packages.${pkgs.stdenv.hostPlatform.system}.default ];
+  systemd.user.services.umbriel = {
+    restartIfChanged = false;
+    enableDefaultPath = false;
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

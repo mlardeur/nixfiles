@@ -2,7 +2,7 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 {
   nixpkgs.config.allowUnfree = true;
@@ -68,7 +68,7 @@
       enable = true;
       settings = {
         default_session = {
-          command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd river";
+          command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd river --sessions /home/maxime/.nix-profile/share/wayland-sessions";
           user = "maxime";
         };
       };
@@ -87,6 +87,33 @@
     tailscale.enable = true;
 
   };
+
+  # NVIDIA GPU (moved out of hardware-configuration.nix, which is generated
+  # by nixos-generate-config and must not be edited by hand).
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+  };
+
+  hardware.nvidia = {
+    # Modesetting is required.
+    modesetting.enable = true;
+
+    # Power management is a known trigger for GSP firmware hangs with the
+    # open kernel module (Xid 62 "PMU halted" / Xid 154 "GPU Reset Required"),
+    # which makes river/wlroots fail to start. Keep it off.
+    powerManagement.enable = false;
+    powerManagement.finegrained = false;
+
+    # Open kernel module (required for Turing and newer GPUs).
+    open = true;
+
+    nvidiaSettings = true;
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
+  };
+
+  # Enable NVIDIA container toolkit
+  hardware.nvidia-container-toolkit.enable = true;
 
   xdg.portal = {
     enable = true;
@@ -122,7 +149,6 @@
     cifs-utils # For mount.cifs
     exfatprogs # Format to exFat
     wireplumber # PipeWire session manager
-    tailscale # VPN client
 
     # Home Manager module
     home-manager
@@ -162,6 +188,17 @@
     enable = true;
     uid = 1001;
     gid = 100;
+  };
+
+  # Home Manager installs the umbriel binary + wayland session in the user
+  # profile; start-umbriel launches it through umbriel.service, so systemd
+  # must know the package's user units (systemd.packages also feeds
+  # /etc/systemd/user). restartIfChanged keeps rebuilds from killing a
+  # running session. Everything else stays in home/desktop/umbriel.nix.
+  systemd.packages = [ inputs.umbriel.packages.${pkgs.stdenv.hostPlatform.system}.default ];
+  systemd.user.services.umbriel = {
+    restartIfChanged = false;
+    enableDefaultPath = false;
   };
 
   # This option defines the first version of NixOS you have installed on this particular machine,

@@ -10,6 +10,9 @@
     ./dunst.nix
     ./gtk.nix
     ./river
+    ./hyprland.nix
+    ./umbriel.nix
+    ./noctalia.nix
     ./waybar.nix
   ];
 

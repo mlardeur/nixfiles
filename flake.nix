@@ -27,6 +27,16 @@
     flatpaks.url = "github:gmodena/nix-flatpak/main";
     # Flathub Cli
     fh.url = "https://flakehub.com/f/DeterminateSystems/fh/*.tar.gz";
+    # Noctalia shell
+    noctalia = {
+      url = "github:noctalia-dev/noctalia";
+      inputs.nixpkgs.follows = "nixpkgs"; # this line is optional, prevents downloading two versions of nixpkgs but disables cache
+    };
+    # Umbriel compositor (pairs with the Noctalia shell)
+    umbriel = {
+      url = "github:noctalia-dev/umbriel";
+      inputs.nixpkgs.follows = "nixpkgs"; # same rationale as noctalia; drop if upstream needs a newer nixpkgs
+    };
   };
 
   outputs = { self, nixpkgs, nixpkgs-stable, home-manager, home-manager-stable, nixgl, flatpaks, fh, sops-nix, ... } @ inputs:
@@ -49,6 +59,7 @@
       # 'sudo nixos-rebuild switch --flake .#hostname'
       nixosConfigurations = {
         athena = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs; };
           modules = [
             {
               environment.systemPackages = [ fh.packages.x86_64-linux.default ];
@@ -57,6 +68,7 @@
           ];
         };
         hera = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs; };
           modules = [
             {
               environment.systemPackages = [ fh.packages.x86_64-linux.default ];
