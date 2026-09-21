@@ -3,6 +3,7 @@ import Quickshell.Io
 import Quickshell.Wayland
 import Quickshell.Services.SystemTray
 import QtQuick
+import QtQuick.Effects
 import QtQuick.Layouts
 import QtQuick.Shapes
 
@@ -20,7 +21,12 @@ PanelWindow {
 
     exclusiveZone: 30
     color: "transparent"
-    implicitHeight: 30
+
+    // Tab is 30px tall; the window is a bit taller so the drop shadow
+    // below the tab has room to render without being surface-clipped.
+    readonly property real barH: 30
+    readonly property real shadowPad: 12
+    implicitHeight: barH + shadowPad
 
     // Bar geometry: folder-tab ("interleaf") silhouette — wide top edge
     // flush with the screen, tight concave shoulder flares (~1:3 slope
@@ -142,7 +148,20 @@ PanelWindow {
     }
 
     Shape {
-        anchors.fill: parent
+        anchors {
+            top: parent.top
+            left: parent.left
+            right: parent.right
+        }
+        height: bar.barH
+        layer.enabled: true
+        layer.effect: MultiEffect {
+            shadowEnabled: true
+            shadowColor: Qt.alpha(Theme.base00, 0.8)
+            shadowBlur: 0.15
+            shadowVerticalOffset: 4
+            shadowHorizontalOffset: 0
+        }
 
         ShapePath {
             fillColor: Qt.alpha(Theme.surface, 0.85)
@@ -163,27 +182,27 @@ PanelWindow {
             }
             PathLine {
                 x: bar.botX + bar.botW
-                y: bar.height - bar.cornerR
+                y: bar.barH - bar.cornerR
             }
             PathCubic {
                 x: bar.botX + bar.botW - bar.cornerR
-                y: bar.height
+                y: bar.barH
                 control1X: bar.botX + bar.botW
-                control1Y: bar.height - bar.cornerR + bar.cornerK
+                control1Y: bar.barH - bar.cornerR + bar.cornerK
                 control2X: bar.botX + bar.botW - bar.cornerR + bar.cornerK
-                control2Y: bar.height
+                control2Y: bar.barH
             }
             PathLine {
                 x: bar.botX + bar.cornerR
-                y: bar.height
+                y: bar.barH
             }
             PathCubic {
                 x: bar.botX
-                y: bar.height - bar.cornerR
+                y: bar.barH - bar.cornerR
                 control1X: bar.botX + bar.cornerR - bar.cornerK
-                control1Y: bar.height
+                control1Y: bar.barH
                 control2X: bar.botX
-                control2Y: bar.height - bar.cornerR + bar.cornerK
+                control2Y: bar.barH - bar.cornerR + bar.cornerK
             }
             PathLine {
                 x: bar.botX
@@ -201,7 +220,12 @@ PanelWindow {
     }
 
     RowLayout {
-        anchors.fill: parent
+        anchors {
+            top: parent.top
+            left: parent.left
+            right: parent.right
+        }
+        height: bar.barH
         anchors.leftMargin: bar.botX + 12
         anchors.rightMargin: bar.botX + 12
         spacing: 12
@@ -220,6 +244,10 @@ PanelWindow {
                     onClicked: River.setFocusedTag(bar.screen, tagId)
                 }
             }
+        }
+
+        MediaPlayer {
+            Layout.alignment: Qt.AlignVCenter
         }
 
         Item { Layout.fillWidth: true }

@@ -37,6 +37,11 @@
       url = "github:noctalia-dev/umbriel";
       inputs.nixpkgs.follows = "nixpkgs"; # same rationale as noctalia; drop if upstream needs a newer nixpkgs
     };
+    # Mango compositor (dwl-based, native Noctalia workspace integration)
+    mangowm = {
+      url = "github:mangowm/mango";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, nixpkgs-stable, home-manager, home-manager-stable, nixgl, flatpaks, fh, sops-nix, ... } @ inputs:

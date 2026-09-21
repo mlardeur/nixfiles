@@ -96,21 +96,30 @@
   };
 
   hardware.nvidia = {
-    # Modesetting is required.
     modesetting.enable = true;
 
-    # Power management is a known trigger for GSP firmware hangs with the
-    # open kernel module (Xid 62 "PMU halted" / Xid 154 "GPU Reset Required"),
-    # which makes river/wlroots fail to start. Keep it off.
-    powerManagement.enable = false;
-    powerManagement.finegrained = false;
+    # S3 suspend/resume requires the driver to save/restore VRAM + display
+    # state. With the open module on driver >= 595 this uses the kernel
+    # suspend-notifier path (NVreg_UseKernelSuspendNotifiers=1), which replaces
+    # the old nvidia-suspend/resume systemd units and their broken nvidia-sleep.sh
+    # (nixpkgs #446671). This is the upstream fix for Blackwell/595 resume hangs.
+    powerManagement = {
+      enable = true;
+      kernelSuspendNotifier = true; # default on open+>=595; explicit for clarity
+      finegrained = false;          # RTD3/D3cold causes separate resume hangs
+    };
 
-    # Open kernel module (required for Turing and newer GPUs).
+    # Open module is REQUIRED for Blackwell (RTX 5060 Ti); do not set false.
     open = true;
 
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
+
+  # VRAM is dumped to TemporaryFilePath on suspend; the ~16G tmpfs at /tmp is
+  # too small for this GPU's 16G VRAM and yields a blank screen on resume.
+  # /var/tmp is on btrfs with ample free space.
+  boot.kernelParams = [ "nvidia.NVreg_TemporaryFilePath=/var/tmp" ];
 
   # Enable NVIDIA container toolkit
   hardware.nvidia-container-toolkit.enable = true;

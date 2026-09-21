@@ -10,10 +10,8 @@
     ./dunst.nix
     ./gtk.nix
     ./river
-    ./hyprland.nix
-    ./umbriel.nix
+    ./mango.nix
     ./noctalia.nix
-    ./waybar.nix
   ];
 
   home.pointerCursor = {
