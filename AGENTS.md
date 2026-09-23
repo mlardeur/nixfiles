@@ -41,6 +41,7 @@ Two nixpkgs channels coexist: `nixpkgs` (nixos-unstable) and `nixpkgs-stable` (2
 - `hosts/<name>/maxime.nix` — per-host Home Manager entrypoint; imports a subset of `home/`.
 - `hosts/shared/` — imported by both NixOS hosts. `samba-mount.nix` defines a custom `mountSambaShares` option.
 - `home/cli`, `home/desktop`, `home/programs/*` — reusable HM modules; each host opts into a subset.
+- Wayland stack: Mango WM (`home/desktop/mango.nix`, via the `mangowm` flake input) + Noctalia shell (`home/desktop/noctalia.nix`). Both NixOS hosts launch it from greetd via `tuigreet --cmd mango` (session file comes from the user profile). River/quickshell/dunst/waybar were removed — do not reintroduce a second notification daemon or status bar; Noctalia owns notifications, wallpaper, and panels.
 
 ## Secrets (sops-nix)
 
@@ -51,8 +52,7 @@ Two nixpkgs channels coexist: `nixpkgs` (nixos-unstable) and `nixpkgs-stable` (2
 
 ## Gotchas
 
-- `system.stateVersion` differs per host (`athena` 23.05, `hera` 24.11, HM `maxime` 26.05, `zion` 24.11). Never bump these.
+- `system.stateVersion` differs per host (`athena` 23.05, `hera` 24.11, HM `maxime@hera` 26.05, HM `maxime@athena` 25.05, `zion` 24.11). Never bump these.
 - `samba-mount.nix` mounts CIFS shares using a credentials file at `/etc/nixos/smb-nebula-secrets` that is not in this repo — mounting will fail without it.
 - `home/cli/ssh.nix` works around Home Manager's SSH config by writing `~/.ssh/config_source` and copying it to `~/.ssh/config` (chmod 600) via `onChange`.
-- `rebuild.log` is a leftover debug log committed by accident; ignore it.
-- `home/desktop/eww/AGENTS.md` documents the (currently commented-out) eww `configDir`.
+- `rebuild.log` and `result` are gitignored build leftovers; never commit them.

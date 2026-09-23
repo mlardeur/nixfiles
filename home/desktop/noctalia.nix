@@ -22,7 +22,7 @@
         wallpaper_scheme = "m3-rainbow";
       };
 
-      # Noctalia owns the wallpaper (wbg was removed from the river init).
+      # Noctalia owns the wallpaper.
       wallpaper = {
         enabled = true;
         default.path = "/home/maxime/Pictures/Wallpapers/montain-art-ultrawide.jpg";

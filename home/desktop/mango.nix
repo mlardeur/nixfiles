@@ -87,6 +87,13 @@ in
       shadows_position_y = 2; # doc value (mango default 0)
       shadowscolor = "0x000000ff"; # mango default (explicit per doc)
 
+      # Animations: no slide when switching the activated workspace/tag, and
+      # no transition when a window closes (applies to floating + tiled).
+      # mango clamps animation_duration_* to >= 1 ms, so 1 = effectively off;
+      # animation_type_close="none" removes the close transition outright.
+      animation_duration_tag = 1;
+      animation_type_close = "none";
+
       tagrule = tagRules;
 
       # river rule-add: -app-id pavucontrol float

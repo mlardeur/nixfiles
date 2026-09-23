@@ -6,10 +6,7 @@
     inputs.flatpaks.homeManagerModules.nix-flatpak
     ./kitty.nix
     ./foot.nix
-    ./quickshell.nix
-    ./dunst.nix
     ./gtk.nix
-    ./river
     ./mango.nix
     ./noctalia.nix
   ];
